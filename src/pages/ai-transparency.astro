@@ -1,0 +1,26 @@
+---
+import ArticleLayout from "@/layouts/ArticleLayout.astro";
+import { siteConfig } from "@/config/site.config";
+---
+
+<ArticleLayout
+  title="AI Transparency"
+  description={`How ${siteConfig.name} uses automation while keeping factual and editorial limits visible.`}
+  canonicalPath="/ai-transparency/"
+>
+  <p>
+    {siteConfig.name} may use software and AI-assisted workflows to organize product records, identify page relationships, and check content contracts. These tools do not turn a brand claim into an independent finding.
+  </p>
+  <h2>What automation can help with</h2>
+  <p>
+    Automation can flag missing source links, keep product and editorial data separate, and surface buyer questions that deserve a clearer buying guide. It can also help maintain navigation and internal links as the site grows.
+  </p>
+  <h2>What it cannot claim</h2>
+  <p>
+    We do not present AI output as hands-on testing, expert medical advice, a personal result, a merchant rating, or a permanent price and availability record. Product facts must remain attributable to a current source, and uncertainty stays visible to readers.
+  </p>
+  <h2>Editorial responsibility</h2>
+  <p>
+    The editorial team remains responsible for the published buying decision, including when a page should name a tradeoff, decline a claim, or direct a reader to the current listing for changing details. Read our <a href="/editorial-policy/">editorial policy</a> and <a href="/review-methodology/">research methodology</a> for the full approach.
+  </p>
+</ArticleLayout>

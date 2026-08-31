@@ -1,0 +1,21 @@
+---
+import ArticleLayout from "@/layouts/ArticleLayout.astro";
+import { siteConfig } from "@/config/site.config";
+---
+
+<ArticleLayout
+  title="Contact"
+  description={`Contact ${siteConfig.name}.`}
+  canonicalPath="/contact/"
+>
+  <p>
+    For corrections, partnership questions, or product data updates, contact:
+  </p>
+  <p>
+    <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+  </p>
+  <p>
+    When sending product corrections, include the product name, source URL, and
+    the exact claim that should be reviewed.
+  </p>
+</ArticleLayout>

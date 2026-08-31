@@ -1,0 +1,156 @@
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 bg-surface font-sans text-ink antialiased;
+  }
+
+  a {
+    @apply text-brand underline-offset-4 hover:underline;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+
+  summary {
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .card {
+    @apply rounded-md border border-line bg-surface;
+  }
+
+  .section-label {
+    @apply text-sm font-semibold text-accent;
+  }
+
+  .button {
+    @apply inline-flex min-h-11 items-center justify-center rounded-sm bg-brand px-5 py-3 text-sm font-bold text-white no-underline transition-colors hover:bg-brand-strong hover:no-underline;
+  }
+
+  .button-secondary {
+    @apply inline-flex min-h-11 items-center justify-center rounded-sm border border-line bg-surface px-4 py-2.5 text-sm font-bold text-ink no-underline transition-colors hover:border-brand hover:text-brand hover:no-underline;
+  }
+
+  .text-link {
+    @apply font-bold text-brand no-underline hover:underline;
+  }
+
+  .content-heading {
+    @apply text-2xl font-bold leading-tight md:text-3xl;
+  }
+
+  .page-heading {
+    @apply text-4xl font-bold leading-[1.04] md:text-5xl lg:text-6xl;
+  }
+
+  .rule-heading {
+    @apply border-b-2 border-ink pb-2 text-2xl font-bold leading-tight;
+  }
+
+  .evidence-chip {
+    @apply inline-flex items-center rounded-sm bg-paper px-2.5 py-1 text-xs font-bold text-ink;
+  }
+
+  .award-chip {
+    @apply inline-flex items-center rounded-sm bg-accent px-2.5 py-1 text-xs font-bold text-white;
+  }
+
+  .prose-affiliate {
+    @apply prose prose-slate max-w-none text-[1.0625rem] leading-7 prose-headings:font-bold prose-a:font-semibold prose-a:text-brand prose-table:text-sm;
+  }
+
+  .prose-affiliate a {
+    overflow-wrap: anywhere;
+  }
+
+  .article-column {
+    @apply mx-auto w-full max-w-[760px];
+  }
+
+  .wide-column {
+    @apply mx-auto w-full max-w-[1040px];
+  }
+
+  .section-kicker {
+    @apply text-xs font-bold uppercase tracking-[0.14em] text-accent;
+  }
+
+  .editorial-card {
+    @apply border border-line bg-surface p-5 md:p-6;
+  }
+
+  .decision-card {
+    @apply border-y-2 border-ink bg-paper p-5 md:p-7;
+  }
+
+  .decision-grid {
+    @apply grid gap-5 md:grid-cols-2;
+  }
+
+  .decision-grid--compact {
+    @apply grid-cols-2 gap-3 text-xs leading-4;
+  }
+
+  .decision-grid--compact p {
+    @apply text-muted;
+  }
+
+  .editorial-card--compact {
+    @apply p-4 md:p-6;
+  }
+
+  @media (max-width: 767px) {
+    .editorial-card--compact h2 {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+    }
+  }
+
+  .review-hero-decision {
+    @apply mt-5 border-y border-line py-4;
+  }
+
+  .review-hero-decision__fit {
+    @apply mt-4 grid grid-cols-2 gap-3 text-xs leading-4 md:gap-5 md:text-sm md:leading-5;
+  }
+
+  .review-hero-decision__fit p + p {
+    @apply mt-1 text-muted;
+  }
+}

@@ -1,0 +1,39 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { brands } from "@/data/brands";
+import { getProductsByBrand } from "@/utils/data";
+import { siteConfig } from "@/config/site.config";
+---
+
+<BaseLayout
+  title={`Brand Hubs - ${siteConfig.name}`}
+  description="Brand hub pages that connect product reviews, comparisons, and official reference links."
+  canonicalPath="/brands/"
+>
+  <section class="container section space-y-8">
+    <header class="max-w-4xl border-b-4 border-ink pb-6">
+      <p class="section-label">Brand directory</p>
+      <h1 class="page-heading mt-2">Brand Hubs</h1>
+      <p class="text-lg text-muted">
+        Use brand hubs when the product library has enough SKUs or comparison
+        angles to support a useful navigational page.
+      </p>
+    </header>
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        brands.map((brand) => (
+          <a
+            href={`/brands/${brand.slug}/`}
+            class="card block p-6 text-ink no-underline hover:border-brand hover:no-underline"
+          >
+            <p class="section-label">
+              {getProductsByBrand(brand.slug).length} products
+            </p>
+            <h2 class="mt-2 text-2xl font-bold">{brand.name}</h2>
+            <p class="mt-3 text-muted">{brand.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

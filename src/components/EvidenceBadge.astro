@@ -1,0 +1,19 @@
+---
+import type { ProductEvidence } from "@/types";
+
+interface Props {
+  evidence: ProductEvidence;
+}
+
+const { evidence } = Astro.props;
+const level = evidence.testedByUs
+  ? "hands-on"
+  : evidence.level || "source-checked";
+const labels = {
+  "hands-on": "Hands-on evidence",
+  "merchant-verified": "Listing information reviewed",
+  "source-checked": "Editorial research",
+};
+---
+
+<span class="evidence-chip">{labels[level]}</span>

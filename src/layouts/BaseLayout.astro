@@ -1,0 +1,117 @@
+---
+import "@fontsource-variable/source-sans-3";
+import "@/styles/global.css";
+
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import { analyticsConfig } from "@/config/analytics.config";
+import { siteConfig } from "@/config/site.config";
+import { themeConfig } from "@/config/theme.config";
+import { jsonLd, organizationSchema, websiteSchema } from "@/utils/schema";
+import { isProductionIndexing } from "@/utils/seo";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  image?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalPath = "/",
+  image = "/media/product-placeholder.svg",
+} = Astro.props;
+const canonical = new URL(canonicalPath, siteConfig.url).toString();
+const imageUrl = new URL(image, siteConfig.url).toString();
+const productionIndexing = isProductionIndexing();
+const themeStyle = Object.entries(themeConfig.colors)
+  .map(
+    ([key, value]) =>
+      `--color-${key.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)}:${value}`,
+  )
+  .join(";");
+---
+
+<!doctype html>
+<html lang={siteConfig.language}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {
+      productionIndexing ? (
+        <meta name="robots" content="index,follow" />
+      ) : (
+        <meta name="robots" content="noindex,nofollow" />
+      )
+    }
+    <meta name="theme-color" content={themeConfig.colors.ink} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {
+      productionIndexing && analyticsConfig.enabled && (
+        <script
+          is:inline
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${analyticsConfig.measurementId}`}
+        />
+      )
+    }
+    {
+      productionIndexing && analyticsConfig.enabled && (
+        <script is:inline set:html={`document.addEventListener('click', function (event) {
+  var target = event.target instanceof Element ? event.target.closest('[data-affiliate-cta]') : null;
+  if (!target || typeof window.gtag !== 'function') return;
+  window.gtag('event', 'affiliate_click', {
+    page_type: target.dataset.pageType || undefined,
+    page_slug: target.dataset.pageSlug || undefined,
+    product_slug: target.dataset.productSlug || undefined,
+    asin: target.dataset.asin || undefined,
+    merchant: target.dataset.merchant || undefined,
+    cta_position: target.dataset.ctaPosition || undefined,
+    cta_label: target.dataset.ctaLabel || undefined
+  });
+});`} />
+      )
+    }
+    {
+      productionIndexing && analyticsConfig.enabled && (
+        <script
+          is:inline
+          set:html={`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${analyticsConfig.measurementId}');`}
+        />
+      )
+    }
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={jsonLd(websiteSchema())}
+    />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={jsonLd(organizationSchema())}
+    />
+  </head>
+  <body style={themeStyle}>
+    <SiteHeader />
+    <main>
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

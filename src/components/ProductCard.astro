@@ -1,0 +1,78 @@
+---
+import MerchantCTA from "@/components/MerchantCTA.astro";
+import ResponsiveImage from "@/components/ResponsiveImage.astro";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure.astro";
+import EvidenceBadge from "@/components/EvidenceBadge.astro";
+import EvidenceNotes from "@/components/EvidenceNotes.astro";
+import type { Product } from "@/types";
+import { getBrand, getDisplayProductTitle, getProductIdentity, getProductReview, getProductReadingPath } from "@/utils/data";
+
+interface Props {
+  product: Product;
+  rank?: number;
+  showMerchantCta?: boolean;
+}
+
+const { product, rank, showMerchantCta = false } = Astro.props;
+const brand = getBrand(product.brandSlug);
+const displayTitle = getDisplayProductTitle(product);
+const productIdentity = getProductIdentity(product);
+const review = getProductReview(product.slug);
+const readingPath = getProductReadingPath(product.slug);
+---
+
+<article class="card flex h-full flex-col overflow-hidden">
+  {
+    <ResponsiveImage src={product.image} alt={`${productIdentity} product preview`} width={640} height={360} aspectClass="aspect-[16/9]" />
+  }
+  <div class="flex flex-1 flex-col p-5">
+    <div>
+      <div class="mb-3 flex flex-wrap gap-2">
+      {product.award && <span class="award-chip">{product.award.label}</span>}
+        <EvidenceBadge evidence={product.evidence} />
+      </div>
+      <h2 class="text-xl font-bold leading-tight">
+        <a class="text-ink no-underline hover:text-brand" href={readingPath}>{displayTitle}</a>
+      </h2>
+      {
+        brand && (
+          <p class="mt-1 text-sm text-muted">
+            {rank ? `Pick ${rank} · ` : ""}
+            {brand.name}
+          </p>
+        )
+      }
+    </div>
+    <p class="mt-3 text-sm leading-6 text-muted">
+      {product.bestFor}
+    </p>
+    <dl
+      class="mt-4 grid gap-3 border-y border-line py-3 text-sm sm:grid-cols-2"
+    >
+      <div>
+        <dt class="font-semibold">Best for</dt>
+        <dd class="text-muted">{product.bestFor}</dd>
+      </div>
+      <div>
+        <dt class="font-semibold">Before buying</dt>
+        <dd class="text-muted">Confirm the current listing details.</dd>
+      </div>
+    </dl>
+    {
+      product.skipIf && (
+        <p class="mt-3 text-sm">
+          <strong>Skip if:</strong>{" "}
+          <span class="text-muted">{product.skipIf}</span>
+        </p>
+      )
+    }
+    <div class="mt-4"><EvidenceNotes evidence={product.evidence} /></div>
+    {showMerchantCta && <div class="mt-auto pt-4"><AffiliateDisclosure compact /></div>}
+    <div class="mt-4 flex flex-wrap gap-3">
+      <a class="button-secondary" href={readingPath}>
+        {review ? "Read review" : "Read buying guide"}
+      </a>
+      {showMerchantCta && <MerchantCTA href={product.affiliateUrl || product.merchantUrl} productSlug={product.slug} asin={product.identifiers?.asin} />}
+    </div>
+  </div>
+</article>

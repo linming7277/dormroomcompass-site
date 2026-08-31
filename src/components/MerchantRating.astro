@@ -1,0 +1,20 @@
+---
+import { getMerchantRatingDisplay } from "@/utils/merchantData.mjs";
+
+interface Props { rating?: Record<string, unknown>; }
+const display = getMerchantRatingDisplay(Astro.props.rating);
+---
+
+{
+  display.display && (
+    <aside class="border-l-2 border-accent pl-3 text-sm" aria-label={display.label}>
+      <p class="font-bold">{display.label}</p>
+      <p class="mt-1 text-muted">
+        {display.rating} / {display.ratingScale} · {Number(display.ratingCount).toLocaleString()} ratings
+      </p>
+      <a class="mt-1 inline-block text-xs font-semibold" href={display.sourceUrl} target="_blank" rel="nofollow noopener">
+        Checked {String(display.checkedAt).slice(0, 10)}{display.freshness === "stale" ? " · stale" : ""}
+      </a>
+    </aside>
+  )
+}

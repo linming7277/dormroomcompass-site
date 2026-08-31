@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "affiliate-site.json",
+  "type": "object",
+  "required": [
+    "version",
+    "site_type",
+    "candidate",
+    "site",
+    "geo",
+    "affiliate",
+    "evidence",
+    "page_plan",
+    "monetization",
+    "publishing",
+    "integrations",
+    "workflow_gates"
+  ],
+  "properties": {
+    "version": { "const": 1 },
+    "site_type": { "const": "affiliate" },
+    "candidate": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": ["integer", "string"] },
+        "candidate_id": { "type": ["integer", "string"] },
+        "source_refs": { "type": "array" }
+      }
+    },
+    "site": {
+      "type": "object",
+      "required": ["domain", "name", "identity"],
+      "properties": {
+        "domain": { "type": "string", "minLength": 3 },
+        "name": { "type": "string", "minLength": 1 },
+        "identity": { "type": "string", "minLength": 1 },
+        "audience": { "type": "string" }
+      }
+    },
+    "geo": {
+      "type": "object",
+      "required": ["allowed"],
+      "properties": {
+        "allowed": { "type": "array", "items": { "type": "string" } },
+        "restrictions": { "type": "array" }
+      }
+    },
+    "affiliate": {
+      "type": "object",
+      "required": ["affiliate_source", "sources", "programs"],
+      "properties": {
+        "affiliate_source": { "type": "string" },
+        "sources": { "type": "array", "items": { "type": "string" } },
+        "programs": { "type": "array" },
+        "disclosure": { "type": "string" },
+        "subid_supported": { "type": "boolean" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["products", "image_rights", "sufficient"],
+      "properties": {
+        "products": { "type": "array" },
+        "image_rights": { "type": "array" },
+        "sufficient": { "type": "boolean" }
+      }
+    },
+    "page_plan": {
+      "type": "object",
+      "required": ["pages", "intent_reviewed"],
+      "properties": {
+        "pages": { "type": "array" },
+        "intent_reviewed": { "type": "boolean" },
+        "machine_readable_only": { "type": "boolean" }
+      }
+    },
+    "monetization": {
+      "type": "object",
+      "required": ["primary", "adsense", "display_ads_network"],
+      "properties": {
+        "primary": { "const": "affiliate" },
+        "optional_ads": {
+          "type": "array",
+          "items": { "enum": ["adsterra", "monetag"] }
+        },
+        "display_ads_network": { "enum": ["none", "adsterra", "monetag"] },
+        "adsense": { "const": "prohibited" }
+      }
+    },
+    "publishing": {
+      "type": "object",
+      "required": ["mode", "noindex", "sitemap"],
+      "properties": {
+        "mode": { "enum": ["staging", "production"] },
+        "noindex": { "type": "boolean" },
+        "sitemap": { "type": "boolean" }
+      }
+    },
+    "integrations": { "type": "object" },
+    "workflow_gates": {
+      "type": "object",
+      "required": ["evidence", "compliance", "content", "media", "links", "legal", "build"],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {
+          "status": { "enum": ["pass", "blocked", "fail", "not_applicable"] },
+          "evidence": { "type": "string" }
+        }
+      }
+    }
+  }
+}

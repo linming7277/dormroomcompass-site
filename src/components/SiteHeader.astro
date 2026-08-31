@@ -1,0 +1,74 @@
+---
+import { siteConfig } from "@/config/site.config";
+---
+
+<header class="bg-surface">
+  <div class="border-b border-line bg-paper">
+    <div
+      class="container flex flex-col gap-1 py-2 text-xs text-muted sm:flex-row sm:items-center sm:justify-between"
+    >
+      <span>{siteConfig.trust.evidenceLabel}</span>
+      <a
+        class="font-semibold text-ink no-underline hover:text-brand"
+        href="/affiliate-disclosure/"
+      >
+        How this site is funded
+      </a>
+    </div>
+  </div>
+
+  <div class="container flex min-h-20 items-center justify-between gap-5 py-4">
+    <a
+      href="/"
+      class="max-w-[18rem] text-2xl font-bold leading-none text-ink no-underline hover:text-brand"
+    >
+      {siteConfig.name}
+      <span class="mt-1 block text-xs font-semibold leading-tight text-muted"
+        >{siteConfig.tagline}</span
+      >
+    </a>
+
+    <nav
+      class="hidden items-center gap-6 text-sm font-bold lg:flex"
+      aria-label="Primary navigation"
+    >
+      {
+        siteConfig.nav.map((item) => (
+          <a class="text-ink no-underline hover:text-brand" href={item.href}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <details class="relative lg:hidden">
+      <summary class="button-secondary cursor-pointer">Menu</summary>
+      <nav
+        class="absolute right-0 z-30 mt-2 w-64 border border-line bg-surface p-3 shadow-soft"
+        aria-label="Mobile navigation"
+      >
+        <ul class="m-0 space-y-1 p-0">
+          {
+            siteConfig.nav.map((item) => (
+              <li class="list-none">
+                <a
+                  class="block px-3 py-2 font-bold text-ink no-underline hover:bg-paper"
+                  href={item.href}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+          <li class="list-none border-t border-line pt-1">
+            <a
+              class="block px-3 py-2 font-bold text-ink no-underline hover:bg-paper"
+              href="/categories/">All categories</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+
+</header>

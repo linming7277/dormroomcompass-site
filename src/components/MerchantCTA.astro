@@ -1,0 +1,48 @@
+---
+import { affiliateConfig } from "@/config/affiliate.config";
+
+interface Props {
+  href?: string;
+  label?: string;
+  pageType?: string;
+  pageSlug?: string;
+  productSlug?: string;
+  asin?: string;
+  position?: string;
+}
+
+const {
+  href,
+  label = "Check current listing",
+  pageType,
+  pageSlug,
+  productSlug,
+  asin,
+  position,
+} = Astro.props;
+---
+
+{
+  href ? (
+    <a
+      class="button"
+      href={href}
+      target="_blank"
+      rel={affiliateConfig.defaultRel}
+      data-affiliate-cta
+      data-page-type={pageType}
+      data-page-slug={pageSlug}
+      data-product-slug={productSlug}
+      data-asin={asin}
+      data-cta-position={position}
+      data-cta-label={label}
+      data-merchant="affiliate-merchant"
+    >
+      {label}
+    </a>
+  ) : (
+    <span class="button-secondary" aria-disabled="true">
+      Merchant link pending verification
+    </span>
+  )
+}

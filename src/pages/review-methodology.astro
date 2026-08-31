@@ -1,0 +1,36 @@
+---
+import ArticleLayout from "@/layouts/ArticleLayout.astro";
+import { siteConfig } from "@/config/site.config";
+---
+
+<ArticleLayout
+  title="Review Methodology"
+  description={`How ${siteConfig.name} researches product identity, buyer questions, source limits and editorial tradeoffs.`}
+  canonicalPath="/review-methodology/"
+>
+  <p>
+    {siteConfig.name} separates product facts, buyer fit, source notes, and
+    editorial guidance so each purchase decision can be inspected later.
+  </p>
+  <h2>How we research a buying decision</h2>
+  <ol>
+    <li>Verify the product identity and the exact listing being discussed.</li>
+    <li>Check official and merchant information for documented product facts.</li>
+    <li>Use relevant professional sources for general category context where needed.</li>
+    <li>Identify the buyer question before deciding what the page should answer.</li>
+    <li>Compare a product format with realistic alternatives, not marketing claims.</li>
+    <li>State the best-fit case, the main tradeoff, and a clear skip condition.</li>
+    <li>Keep changing price, inventory, seller, and offer details on the current merchant page.</li>
+    <li>Apply content and source checks before a page can be published.</li>
+    <li>Revisit dynamic merchant details rather than treating them as permanent facts.</li>
+  </ol>
+  <h2>What our method weighs</h2>
+  <p>Buyer fit comes first, then evidence quality, practical constraints, and the reason a shopper may want to skip a product. A longer feature list does not automatically make a better buying decision.</p>
+  <h2>Hands-on testing claims</h2>
+  <p>
+    Only claim hands-on testing when the product data includes a testing note.
+    Otherwise, say the page is based on source review and buyer criteria.
+  </p>
+  <h2>Affiliate independence</h2>
+  <p>Affiliate compensation supports the site but does not remove the requirement to identify a limitation or recommend no purchase. Our <a href="/affiliate-disclosure/">affiliate disclosure</a> explains the commercial relationship in full.</p>
+</ArticleLayout>

@@ -1,0 +1,59 @@
+---
+import AffiliateDisclosure from "@/components/AffiliateDisclosure.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import EditorialByline from "@/components/EditorialByline.astro";
+import PageSources from "@/components/PageSources.astro";
+import ProductComparisonTable from "@/components/ProductComparisonTable.astro";
+import ProductDecisionCard from "@/components/ProductDecisionCard.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import { assertFound, getProduct } from "@/utils/data";
+import { articleSchema, breadcrumbSchema, jsonLd } from "@/utils/schema";
+
+export async function getStaticPaths() {
+  const comparisons = await getCollection("comparisons");
+  return comparisons.map((comparison) => ({ params: { slug: comparison.data.slug } }));
+}
+
+const comparison = assertFound(await getEntry("comparisons", Astro.params.slug || ""), "Comparison");
+const comparedProducts = comparison.data.productSlugs.flatMap((slug) => {
+  const product = getProduct(slug);
+  return product ? [product] : [];
+});
+const comparisonLabels = ["A", "B", "C"];
+const quickDecisionPaths = [
+  ...comparedProducts.map((product, index) => ({
+    label: `Choose ${comparisonLabels[index] || index + 1}`,
+    condition: product.bestFor,
+  })),
+  {
+    label: "Choose none",
+    condition: comparison.data.decisionPaths.at(-1)?.condition || "Pause when the product role or merchant details remain unclear.",
+  },
+];
+const { Content } = await render(comparison);
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Compare", url: "/compare/" },
+  { name: comparison.data.title, url: `/compare/${comparison.data.slug}/` },
+];
+---
+
+<BaseLayout title={comparison.data.title} description={comparison.data.description} canonicalPath={`/compare/${comparison.data.slug}/`}>
+  <article>
+    <header class="border-b border-line bg-paper"><div class="container py-10 md:py-14"><Breadcrumbs items={breadcrumbs} /><div class="mt-7 max-w-5xl"><p class="section-kicker">Side-by-side decision</p><h1 class="page-heading mt-3">{comparison.data.title}</h1><p class="mt-5 max-w-4xl text-lg leading-8 text-muted">{comparison.data.description}</p><p class="mt-5 max-w-3xl border-l-2 border-accent pl-4 leading-7">Choose the option whose documented use, upkeep and routine role make the next step clearer. Choose neither when key listing details or the product role are still unclear.</p><EditorialByline dateModified={comparison.data.dateModified} contentType="comparison" /></div><div class="mt-5 max-w-3xl"><AffiliateDisclosure compact /></div></div></header>
+    <div class="container space-y-14 py-12 md:py-16">
+      <section class="wide-column"><p class="section-kicker">Quick decision</p><h2 class="mt-2 text-3xl font-bold">Choose a route, not a winner.</h2><div class="mt-7 grid gap-5 md:grid-cols-2 xl:grid-cols-4">{quickDecisionPaths.map((path, index) => <section class:list={["editorial-card", index === quickDecisionPaths.length - 1 && "border-t-2 border-warning"]}><p class="section-kicker">{path.label}</p><h3 class="mt-2 text-xl font-bold">{index === quickDecisionPaths.length - 1 ? "Choose none for now" : `Product ${comparisonLabels[index] || index + 1}`}</h3><p class="mt-3 text-sm leading-6 text-muted">{path.condition}</p></section>)}</div></section>
+
+      <section class="wide-column"><p class="section-kicker">The products</p><h2 class="mt-2 text-3xl font-bold">Verify the option before using its merchant link.</h2><div class="mt-7 grid gap-6 xl:grid-cols-3">{comparedProducts.map((product, index) => <ProductDecisionCard product={product} pageType="comparison" pageSlug={comparison.data.slug} position={`product-${comparisonLabels[index]?.toLowerCase() || index + 1}`} label={`Product ${comparisonLabels[index] || index + 1}`} />)}</div></section>
+
+      <section class="wide-column"><p class="section-kicker">Comparison matrix</p><h2 class="mt-2 text-3xl font-bold">The dimensions that change the decision.</h2><div class="mt-7"><ProductComparisonTable products={comparedProducts} /></div><div class="mt-6 grid gap-4 md:grid-cols-3">{comparison.data.decisionDimensions.map((dimension) => <section class="border-t-2 border-accent pt-4"><h3 class="text-lg font-bold">{dimension.label}</h3><p class="mt-2 text-sm leading-6 text-muted">{dimension.question}</p></section>)}</div></section>
+
+      <section class="article-column prose-affiliate"><Content /></section>
+      <section class="wide-column border-y border-line py-8"><p class="section-kicker">Final verdict</p><h2 class="mt-2 text-3xl font-bold">When neither is the better decision.</h2><p class="mt-3 max-w-3xl leading-7 text-muted">Do not use a comparison to fill in a missing use area, maintenance instruction, ingredient list, warning or merchant policy. The no-buy path is part of a useful comparison, especially when adding another product would create routine overlap.</p><div class="mt-5 flex flex-wrap gap-3"><a class="button-secondary" href="/guides/">Read a buying guide</a><a class="button-secondary" href="/review-methodology/">How we research</a></div></section>
+      <PageSources sourceUrls={comparison.data.sourceUrls} />
+    </div>
+  </article>
+  <script is:inline type="application/ld+json" set:html={jsonLd(articleSchema(comparison.data, `/compare/${comparison.data.slug}/`))} />
+  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumbSchema(breadcrumbs))} />
+</BaseLayout>

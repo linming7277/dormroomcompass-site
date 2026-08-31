@@ -1,0 +1,31 @@
+{
+  "schema_version": "affiliate-check-gates-v1",
+  "decision": "release_ready",
+  "gates": [
+    {
+      "id": "build",
+      "status": "pass",
+      "evidence": "5b7dec25967b7cd46183cd8284f08e8e4ec685ffe01d22681cfbbc390e6744a9"
+    },
+    {
+      "id": "routes-indexing-seo-jsonld",
+      "status": "pass",
+      "evidence": "2ea62bfff025c123d4a974f1bf87bc8d0e43dfd88a32a1afbe53407458aefe3a"
+    },
+    {
+      "id": "affiliate-disclosure-links-facts-media",
+      "status": "pass",
+      "evidence": "018a56ee584f8297ba772a15cc9f1bd78340e89518992d2e6597b6caff41155f"
+    },
+    {
+      "id": "desktop-mobile",
+      "status": "pass",
+      "evidence": "f7fce8050ef6ebc2a91bdc2f66b442aa4245918fa2a034b65a17159b2438af2a"
+    },
+    {
+      "id": "existing-unaffected-page",
+      "status": "not_applicable",
+      "evidence": "new site"
+    }
+  ]
+}

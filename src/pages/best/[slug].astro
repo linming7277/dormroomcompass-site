@@ -1,0 +1,53 @@
+---
+import AffiliateDisclosure from "@/components/AffiliateDisclosure.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import EditorialByline from "@/components/EditorialByline.astro";
+import PageSources from "@/components/PageSources.astro";
+import ProductComparisonTable from "@/components/ProductComparisonTable.astro";
+import ProductDecisionCard from "@/components/ProductDecisionCard.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import { assertFound, getProduct, getProductReadingPath } from "@/utils/data";
+import { articleSchema, breadcrumbSchema, jsonLd } from "@/utils/schema";
+
+export async function getStaticPaths() {
+  const guides = await getCollection("bestPicks");
+  return guides.map((guide) => ({ params: { slug: guide.data.slug } }));
+}
+
+const guide = assertFound(await getEntry("bestPicks", Astro.params.slug || ""), "Best-pick guide");
+const selectedPicks = guide.data.picks.flatMap((pick) => {
+  const product = getProduct(pick.productSlug);
+  return product ? [{ pick, product }] : [];
+});
+const topPick = selectedPicks[0];
+const { Content } = await render(guide);
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Best picks", url: "/best/" },
+  { name: guide.data.title, url: `/best/${guide.data.slug}/` },
+];
+---
+
+<BaseLayout title={guide.data.title} description={guide.data.description} canonicalPath={`/best/${guide.data.slug}/`}>
+  <article>
+    <header class="border-b border-line bg-paper"><div class="container py-8 md:py-10"><Breadcrumbs items={breadcrumbs} /><div class="mt-6 max-w-5xl"><p class="section-kicker">{guide.data.contentMode === "brand-format-guide" ? "Format buying guide" : "Cross-brand buying guide"}</p><h1 class="page-heading mt-3">{guide.data.title}</h1>{topPick && <section class="mt-4 max-w-5xl"><p class="section-kicker">Top pick</p><ProductDecisionCard product={topPick.product} bestFor={topPick.pick.bestFor} skipIf={topPick.pick.skipIf} verdict={topPick.pick.selectionReason} pageType="best" pageSlug={guide.data.slug} position="top-pick-hero" label={topPick.pick.label} compact /></section>}<p class="mt-5 max-w-4xl text-lg leading-8 text-muted">{guide.data.description}</p><EditorialByline dateModified={guide.data.dateModified} contentType="best" /></div><div class="mt-5 max-w-4xl"><AffiliateDisclosure compact /></div></div></header>
+
+    <div class="container space-y-14 py-12 md:py-16">
+      <section class="wide-column grid gap-5 border-y border-line py-6 md:grid-cols-3"><div><p class="section-kicker">Products compared</p><p class="mt-2 text-3xl font-bold">{selectedPicks.length} picks</p></div><div><p class="section-kicker">Top pick</p><p class="mt-2 text-lg font-bold">{topPick?.product.name || "No pick available"}</p></div><div><p class="section-kicker">Decision factors</p><p class="mt-2 text-sm leading-6 text-muted">{guide.data.selectionCriteria.join(" · ")}</p></div></section>
+
+      <section class="wide-column"><div class="flex items-end justify-between gap-4"><div><p class="section-kicker">Comparison first</p><h2 class="mt-2 text-3xl font-bold">Start with the short list.</h2></div><a class="text-link" href="#full-picks">See full picks ↓</a></div><p class="mt-3 max-w-3xl leading-7 text-muted">Use the table to compare the purchase decision, then read the individual context before using a sponsored merchant link.</p><div class="mt-6"><ProductComparisonTable products={selectedPicks.map(({ product }) => product)} /></div></section>
+
+      <section class="wide-column"><p class="section-kicker">How we picked</p><h2 class="mt-2 text-3xl font-bold">The questions behind this shortlist.</h2><div class="mt-7 grid gap-5 md:grid-cols-3">{guide.data.selectionCriteria.map((criterion, index) => <div class="border-t-2 border-accent pt-4"><p class="text-sm font-bold text-accent">0{index + 1}</p><h3 class="mt-2 text-xl font-bold">{criterion}</h3><p class="mt-2 text-sm leading-6 text-muted">Each pick must make this decision clearer and name a reason not to buy it.</p></div>)}</div></section>
+
+      <section id="full-picks" class="wide-column"><p class="section-kicker">Full picks</p><h2 class="mt-2 text-3xl font-bold">Why each product is here.</h2><div class="mt-7 space-y-8">{selectedPicks.map(({ pick, product }, index) => <section class="border-t-2 border-ink pt-7"><ProductDecisionCard product={product} rank={index + 1} bestFor={pick.bestFor} skipIf={pick.skipIf} verdict={pick.selectionReason} pageType="best" pageSlug={guide.data.slug} position={`ranked-pick-${index + 1}`} label={pick.label} /><div class="mt-5 grid gap-4 text-sm leading-6 md:grid-cols-2"><p><strong>Why it ranked here:</strong> {pick.selectionReason}</p><p><strong>Main tradeoff:</strong> {pick.tradeoff}</p></div><a class="mt-4 inline-block text-link" href={getProductReadingPath(product.slug)}>Read the product decision context →</a></section>)}</div></section>
+
+      <section class="article-column prose-affiliate"><Content /></section>
+      <section class="wide-column border-y border-line py-8"><p class="section-kicker">Behind this guide</p><h2 class="mt-2 text-3xl font-bold">A shortlist is not a universal ranking.</h2><p class="mt-3 max-w-3xl leading-7 text-muted">This guide compares the formats and buying questions documented in the listed sources. It does not claim hands-on testing, a permanent price, current merchant rating, or a personal result. Check the live listing only after you have a clear fit and skip condition.</p><div class="mt-5 flex flex-wrap gap-3"><a class="button-secondary" href="/review-methodology/">How we research</a><a class="button-secondary" href="/affiliate-disclosure/">Affiliate disclosure</a></div></section>
+      <PageSources sourceUrls={guide.data.sourceUrls} />
+    </div>
+  </article>
+  <script is:inline type="application/ld+json" set:html={jsonLd(articleSchema(guide.data, `/best/${guide.data.slug}/`))} />
+  <script is:inline type="application/ld+json" set:html={jsonLd({ "@context": "https://schema.org", "@type": "ItemList", name: guide.data.title, description: guide.data.description, itemListElement: selectedPicks.map(({ product }, index) => ({ "@type": "ListItem", position: index + 1, url: getProductReadingPath(product.slug), name: product.name })) })} />
+  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumbSchema(breadcrumbs))} />
+</BaseLayout>

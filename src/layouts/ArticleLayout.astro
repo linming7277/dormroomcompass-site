@@ -1,0 +1,32 @@
+---
+import AffiliateDisclosure from "@/components/AffiliateDisclosure.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+}
+
+const { title, description, canonicalPath } = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+>
+  <article class="container section">
+    <div class="mx-auto max-w-5xl space-y-8">
+      <header class="border-b-2 border-ink pb-6">
+        <p class="section-label">Editorial resource</p>
+        <h1 class="page-heading mt-2">{title}</h1>
+        <p class="text-lg text-muted">{description}</p>
+      </header>
+      <AffiliateDisclosure />
+      <div class="prose-affiliate">
+        <slot />
+      </div>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,11 @@
+---
+interface Props {
+  date: string;
+}
+
+const { date } = Astro.props;
+---
+
+<p class="text-sm text-muted">
+  Last updated: <time datetime={date}>{date}</time>
+</p>

@@ -1,0 +1,27 @@
+---
+import ArticleLayout from "@/layouts/ArticleLayout.astro";
+import { siteConfig } from "@/config/site.config";
+---
+
+<ArticleLayout
+  title="Privacy Policy"
+  description={`Privacy policy for ${siteConfig.name}.`}
+  canonicalPath="/privacy/"
+>
+  <p>
+    This template may use analytics, affiliate links, and advertising scripts
+    when configured by the site owner. Replace this page with your final policy
+    before launch.
+  </p>
+  <h2>Information we may collect</h2>
+  <p>
+    Basic usage data, referral data, and messages sent through contact channels
+    may be collected to operate and improve the site.
+  </p>
+  <h2>Contact</h2>
+  <p>
+    Questions can be sent to <a href={`mailto:${siteConfig.contactEmail}`}
+      >{siteConfig.contactEmail}</a
+    >.
+  </p>
+</ArticleLayout>

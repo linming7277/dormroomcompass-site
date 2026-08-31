@@ -1,0 +1,137 @@
+---
+import AffiliateDisclosure from "@/components/AffiliateDisclosure.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import EvidenceNotes from "@/components/EvidenceNotes.astro";
+import EditorialByline from "@/components/EditorialByline.astro";
+import MerchantCTA from "@/components/MerchantCTA.astro";
+import ProductCard from "@/components/ProductCard.astro";
+import ProductDecisionCard from "@/components/ProductDecisionCard.astro";
+import ReviewDecisionSummary from "@/components/ReviewDecisionSummary.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import { assertFound, getDisplayProductTitle, getProduct, getProductIdentity, getProductsByCategory } from "@/utils/data";
+import { articleSchema, breadcrumbSchema, jsonLd, productSchema } from "@/utils/schema";
+
+export async function getStaticPaths() {
+  const reviews = await getCollection("reviews");
+  return reviews.map((review) => ({ params: { slug: review.data.productSlug } }));
+}
+
+const product = assertFound(getProduct(Astro.params.slug || ""), "Product");
+const review = assertFound(
+  await getEntry("reviews", product.slug),
+  "Review",
+);
+const { Content } = await render(review);
+const displayTitle = getDisplayProductTitle(product);
+const productIdentity = getProductIdentity(product);
+const alternatives = product.categorySlugs
+  .flatMap((slug) => getProductsByCategory(slug))
+  .filter((item, index, all) => item.slug !== product.slug && all.findIndex((match) => match.slug === item.slug) === index)
+  .slice(0, 2);
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Reviews", url: "/reviews/" },
+  { name: displayTitle, url: `/reviews/${product.slug}/` },
+];
+---
+
+<BaseLayout title={review.data.title} description={review.data.description} canonicalPath={`/reviews/${product.slug}/`} image={product.image}>
+  <article>
+    <header class="border-b border-line bg-paper">
+      <div class="container py-8 md:py-10">
+        <Breadcrumbs items={breadcrumbs} />
+        <div class="mt-6 grid gap-10 lg:grid-cols-[minmax(0,1fr)_30rem] lg:items-center">
+          <div>
+            <p class="section-label">Editorial buying review</p>
+            <h1 class="page-heading mt-2">{displayTitle}</h1>
+            {displayTitle !== productIdentity && <p class="mt-3 max-w-4xl text-sm leading-6 text-muted">Full product name: {productIdentity}</p>}
+            <p class="mt-4 hidden max-w-4xl text-lg leading-7 text-muted md:block">{review.data.description}</p>
+            <section class="review-hero-decision" aria-label="Quick buying decision">
+              <div class="flex items-start gap-3">
+                <img
+                  src={product.image}
+                  alt=""
+                  width="96"
+                  height="96"
+                  class="h-16 w-16 shrink-0 border border-line object-cover lg:hidden"
+                />
+                <div>
+                  <p class="section-kicker">Quick decision</p>
+                  <p class="mt-1 text-sm font-bold leading-5 md:text-base md:leading-6">{review.data.decision.headline}</p>
+                </div>
+              </div>
+              <div class="review-hero-decision__fit">
+                <div>
+                  <p class="font-bold text-ink">Best for</p>
+                  <p>{review.data.decision.bestFit}</p>
+                </div>
+                <div>
+                  <p class="font-bold text-ink">Skip if</p>
+                  <p>{review.data.decision.skipIf}</p>
+                </div>
+              </div>
+              <div class="mt-4">
+                <MerchantCTA
+                  href={product.affiliateUrl || product.merchantUrl}
+                  label="Check current listing"
+                  pageType="review"
+                  pageSlug={product.slug}
+                  productSlug={product.slug}
+                  asin={product.identifiers?.asin}
+                  position="hero-quick-decision"
+                />
+              </div>
+            </section>
+            <div class="hidden md:block">
+              <EditorialByline dateModified={review.data.dateModified} contentType="review" />
+            </div>
+            <div class="mt-5 hidden flex-wrap gap-3 md:flex">
+              <a class="button-secondary" href={`/guides/${review.data.guideSlug}/`}>Read the buying guide</a>
+              <a class="button-secondary" href="/review-methodology/">How we review</a>
+            </div>
+          </div>
+          <img src={product.image} alt={`${productIdentity} product preview`} width="1200" height="900" class="hidden aspect-square w-full border border-line object-cover lg:block" />
+        </div>
+      </div>
+    </header>
+
+    <div class="container space-y-10 py-10 md:py-14">
+      <AffiliateDisclosure />
+      <ProductDecisionCard
+        product={product}
+        bestFor={review.data.decision.bestFit}
+        skipIf={review.data.decision.skipIf}
+        verdict={review.data.decision.headline}
+        pageType="review"
+        pageSlug={product.slug}
+        position="hero"
+        label="Product decision"
+      />
+      <ReviewDecisionSummary decision={review.data.decision} testedByUs={product.evidence.testedByUs} />
+      <section class="article-column prose-affiliate">
+        <Content />
+      </section>
+      <section class="wide-column border-y border-line py-7">
+        <h2 class="rule-heading">Continue with the full buying guide</h2>
+        <p class="mt-3 max-w-4xl text-muted">This is product-specific context. Read the article for the wider buyer decision before taking the sponsored merchant action.</p>
+        <a class="button mt-5" href={`/guides/${review.data.guideSlug}/`}>Read the buying guide</a>
+      </section>
+      <EvidenceNotes evidence={{ ...product.evidence, sourceUrls: review.data.sourceUrls ?? [] }} />
+      <section class="wide-column border-y border-line py-7">
+        <h2 class="rule-heading">Ready to check the current listing?</h2>
+        <p class="mt-3 max-w-4xl text-muted">If the fit and limitations above match your needs, verify the exact variant, seller and current terms on the merchant page.</p>
+        <div class="mt-5"><MerchantCTA href={product.affiliateUrl || product.merchantUrl} label="Check current listing" pageType="review" pageSlug={product.slug} productSlug={product.slug} asin={product.identifiers?.asin} position="final-verdict" /></div>
+      </section>
+      {alternatives.length > 0 && (
+        <section>
+          <h2 class="rule-heading">Related products to read about</h2>
+          <div class="mt-5 grid gap-5 md:grid-cols-2">{alternatives.map((alternative) => <ProductCard product={alternative} />)}</div>
+        </section>
+      )}
+    </div>
+  </article>
+  <script is:inline type="application/ld+json" set:html={jsonLd(articleSchema(review.data, `/reviews/${product.slug}/`))} />
+  <script is:inline type="application/ld+json" set:html={jsonLd(productSchema(product))} />
+  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumbSchema(breadcrumbs))} />
+</BaseLayout>

@@ -1,0 +1,38 @@
+---
+import ArticleLayout from "@/layouts/ArticleLayout.astro";
+import { siteConfig } from "@/config/site.config";
+---
+
+<ArticleLayout
+  title={`About ${siteConfig.name}`}
+  description={siteConfig.description}
+  canonicalPath="/about/"
+>
+  <p>{siteConfig.name} publishes editorial buying guides for {siteConfig.audience}.</p>
+  <h2>Who is responsible for the editorial work</h2>
+  <p>
+    Pages are maintained by the {siteConfig.author.name}. The team reviews
+    available product information, maps the buyer decision a page can actually
+    help with, and names situations where a reader should not buy through a
+    link.
+  </p>
+  <h2>What our pages can and cannot say</h2>
+  <p>
+    We separate listing information from editorial guidance. We do not claim
+    hands-on testing unless a page says it was tested and explains that evidence.
+    We do not publish invented prices, ratings, personal outcomes, or medical
+    conclusions. Read our <a href="/editorial-policy/">editorial policy</a> and
+    <a href="/review-methodology/">review methodology</a> for the full process.
+  </p>
+  <h2>What we do not do</h2>
+  <ul>
+    <li>We do not claim hands-on testing when it did not happen.</li>
+    <li>We do not turn a brand claim into an independent finding.</li>
+    <li>We do not rank a product simply because it has an affiliate link.</li>
+    <li>We do not publish an empty category just to make the site look larger.</li>
+    <li>We do not present changing price, stock, or merchant terms as permanent facts.</li>
+  </ul>
+  <p>
+    We explain our use of automation on the <a href="/ai-transparency/">AI transparency</a> page. It does not replace the editorial responsibility for published pages.
+  </p>
+</ArticleLayout>

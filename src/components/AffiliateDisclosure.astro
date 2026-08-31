@@ -1,0 +1,20 @@
+---
+import { affiliateConfig } from "@/config/affiliate.config";
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<aside
+  class="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-950"
+>
+  <strong>Affiliate disclosure:</strong>
+  <span
+    >{
+      compact ? affiliateConfig.disclosureShort : affiliateConfig.disclosureLong
+    }</span
+  >
+</aside>

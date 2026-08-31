@@ -1,0 +1,54 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { getProduct } from "@/utils/data";
+import { siteConfig } from "@/config/site.config";
+
+const guides = await getCollection("guides");
+const bestPicks = await getCollection("bestPicks");
+const comparisons = await getCollection("comparisons");
+const reviews = await getCollection("reviews");
+const flagship = bestPicks.find((item) => item.data.slug === "damaged-hair-repair") || bestPicks[0];
+const featuredGuides = [...guides]
+  .sort((left, right) => right.data.dateModified.localeCompare(left.data.dateModified))
+  .slice(0, 3);
+const latestReviews = [...reviews]
+  .sort((left, right) => right.data.dateModified.localeCompare(left.data.dateModified))
+  .slice(0, 3);
+const problemPaths = siteConfig.home.currentTopics;
+const heroProduct = getProduct(siteConfig.home.featuredProductSlug);
+---
+
+<BaseLayout title={`${siteConfig.name} | Buying Guides`} description={siteConfig.description} image={heroProduct?.image}>
+  <section class="border-b border-line bg-paper">
+    <div class="container grid gap-8 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:py-16">
+      <div class="flex flex-col justify-center py-3">
+        <p class="section-kicker">Editorial buying guides</p>
+        <h1 class="mt-3 max-w-3xl text-5xl font-bold leading-[1.02] md:text-6xl">{siteConfig.tagline}</h1>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-muted">{siteConfig.description}</p>
+        <div class="mt-7 flex flex-wrap gap-3"><a class="button" href="/guides/">Start with buying guides</a><a class="button-secondary" href="/review-methodology/">How we research</a></div>
+        <p class="mt-5 max-w-xl text-xs leading-5 text-muted">Affiliate links may support this site, but they do not replace the evidence and tradeoffs behind a page.</p>
+      </div>
+      {heroProduct && <figure class="overflow-hidden border border-line bg-surface">
+        <img class="aspect-[16/10] h-full w-full object-cover" src={heroProduct.image} alt={`${heroProduct.name} product preview`} width="1200" height="750" fetchpriority="high" />
+        <figcaption class="border-t border-line px-4 py-3 text-xs text-muted">Product facts and current merchant details remain separate.</figcaption>
+      </figure>}
+    </div>
+  </section>
+
+  {flagship && <section class="container section"><div class="wide-column grid gap-7 border-y-2 border-ink py-8 md:grid-cols-[0.72fr_1.28fr] md:items-center"><div><p class="section-kicker">Start here</p><h2 class="mt-2 text-3xl font-bold leading-tight">{flagship.data.title}</h2></div><div><p class="leading-7 text-muted">{flagship.data.description}</p><ul class="mt-4 grid gap-2 text-sm leading-6 text-muted sm:grid-cols-2"><li>• Compare product format before adding a step</li><li>• See the tradeoff and the no-buy path</li><li>• Read individual product context when it exists</li><li>• Verify live merchant details only when ready</li></ul><a class="button mt-6" href={`/best/${flagship.data.slug}/`}>See the picks</a></div></div></section>}
+
+  {problemPaths.length > 0 && <section class="border-y border-line bg-paper"><div class="container section"><div class="max-w-3xl"><p class="section-kicker">Start with the buyer task</p><h2 class="mt-2 text-3xl font-bold">Choose the decision before the product.</h2><p class="mt-3 leading-7 text-muted">Each path begins with a question a product page alone cannot answer.</p></div><div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">{problemPaths.map((path) => <a class="editorial-card group no-underline" href={path.href}><h3 class="text-xl font-bold text-ink group-hover:text-brand">{path.label}</h3><p class="mt-3 text-sm leading-6 text-muted">{path.description}</p><span class="mt-5 inline-block text-sm font-bold text-brand">Explore this path →</span></a>)}</div></div></section>}
+
+  <section class="container section"><p class="section-kicker">Choose your path</p><h2 class="mt-2 text-3xl font-bold">The depth you need depends on the decision.</h2><div class="mt-8 grid gap-5 md:grid-cols-3"><a class="editorial-card no-underline" href="/best/"><p class="section-kicker">Quick picks</p><h3 class="mt-2 text-2xl font-bold text-ink">Need the short list?</h3><p class="mt-3 leading-7 text-muted">Start with ranked buying paths, tradeoffs and explicit skip conditions.</p></a><a class="editorial-card no-underline" href="/guides/"><p class="section-kicker">Routine builder</p><h3 class="mt-2 text-2xl font-bold text-ink">Need to place a product?</h3><p class="mt-3 leading-7 text-muted">Use buying guides to decide which product role is actually missing.</p></a><a class="editorial-card no-underline" href="/review-methodology/"><p class="section-kicker">Evidence & limits</p><h3 class="mt-2 text-2xl font-bold text-ink">Need to understand the evidence?</h3><p class="mt-3 leading-7 text-muted">See how listing facts, editorial guidance and missing evidence stay separate.</p></a></div></section>
+
+  <section class="border-y border-line bg-paper"><div class="container section"><div class="flex items-end justify-between gap-4"><div><p class="section-kicker">Featured buying guides</p><h2 class="mt-2 text-3xl font-bold">Build a clearer routine.</h2></div><a class="text-link" href="/guides/">All guides →</a></div><div class="mt-8 grid gap-5 md:grid-cols-3">{featuredGuides.map((guide) => { const image = guide.data.productSlugs?.map((slug) => getProduct(slug)?.image).find(Boolean); return <a class="editorial-card no-underline" href={`/guides/${guide.data.slug}/`}>{image && <img class="aspect-[4/3] w-full border border-line object-cover" src={image} alt="Product format referenced in this buying guide" width="640" height="480" loading="lazy" />}<p class="section-kicker mt-5">Buying guide</p><h3 class="mt-2 text-xl font-bold leading-tight text-ink">{guide.data.title}</h3><p class="mt-3 text-sm leading-6 text-muted">{guide.data.description}</p><span class="mt-5 inline-block text-sm font-bold text-brand">Read guide →</span></a>; })}</div></div></section>
+
+  {bestPicks.length >= 2 && <section class="container section"><div class="flex items-end justify-between gap-4"><div><p class="section-kicker">Latest best picks</p><h2 class="mt-2 text-3xl font-bold">Shortlists with tradeoffs.</h2></div><a class="text-link" href="/best/">All best picks →</a></div><div class="mt-8 grid gap-5 md:grid-cols-3">{bestPicks.map((best) => <a class="editorial-card no-underline" href={`/best/${best.data.slug}/`}><p class="section-kicker">Buying guide</p><h3 class="mt-2 text-xl font-bold leading-tight text-ink">{best.data.title}</h3><p class="mt-3 text-sm leading-6 text-muted">{best.data.description}</p><span class="mt-5 inline-block text-sm font-bold text-brand">Compare picks →</span></a>)}</div></section>}
+
+  {comparisons.length >= 2 && <section class="border-y border-line bg-paper"><div class="container section"><div class="flex items-end justify-between gap-4"><div><p class="section-kicker">Comparisons</p><h2 class="mt-2 text-3xl font-bold">Choose A, B, or neither.</h2></div><a class="text-link" href="/compare/">All comparisons →</a></div><div class="mt-8 grid gap-5 md:grid-cols-2">{comparisons.map((comparison) => <a class="editorial-card no-underline" href={`/compare/${comparison.data.slug}/`}><p class="section-kicker">Side-by-side decision</p><h3 class="mt-2 text-2xl font-bold leading-tight text-ink">{comparison.data.title}</h3><p class="mt-3 leading-7 text-muted">{comparison.data.description}</p><span class="mt-5 inline-block text-sm font-bold text-brand">See decision paths →</span></a>)}</div></div></section>}
+
+  <section class="container section"><div class="flex items-end justify-between gap-4"><div><p class="section-kicker">Featured reviews</p><h2 class="mt-2 text-3xl font-bold">Product context before a retailer click.</h2></div><a class="text-link" href="/reviews/">All reviews →</a></div><div class="mt-8 grid gap-5 md:grid-cols-3">{latestReviews.map((review) => { const product = getProduct(review.data.productSlug); return <a class="editorial-card no-underline" href={`/reviews/${review.data.productSlug}/`}>{product && <img class="aspect-[4/3] w-full border border-line object-cover" src={product.image} alt={`${product.name} product preview`} width="640" height="480" loading="lazy" />}<p class="section-kicker mt-5">Editorial review</p><h3 class="mt-2 text-xl font-bold leading-tight text-ink">{review.data.title}</h3><p class="mt-3 text-sm leading-6 text-muted">{review.data.decision.headline}</p><span class="mt-5 inline-block text-sm font-bold text-brand">Read review →</span></a>; })}</div></section>
+
+  <section class="border-y border-line bg-paper"><div class="container section grid gap-8 md:grid-cols-[0.85fr_1.15fr]"><div><p class="section-kicker">Our editorial approach</p><h2 class="mt-2 text-3xl font-bold">Useful decisions, with visible limits.</h2></div><div class="grid gap-4 sm:grid-cols-3"><div><h3 class="font-bold">Clear answers first</h3><p class="mt-2 text-sm leading-6 text-muted">Start with the fit, tradeoff and no-buy path.</p></div><div><h3 class="font-bold">Role before hype</h3><p class="mt-2 text-sm leading-6 text-muted">A product needs a defined job in a real buyer decision.</p></div><div><h3 class="font-bold">Current details stay current</h3><p class="mt-2 text-sm leading-6 text-muted">Price, stock, seller and variant information belong on the retailer page.</p></div></div><div class="md:col-span-2 flex flex-wrap gap-3"><a class="button" href="/review-methodology/">How we research</a><a class="button-secondary" href="/about/">About {siteConfig.name}</a></div></div></section>
+</BaseLayout>

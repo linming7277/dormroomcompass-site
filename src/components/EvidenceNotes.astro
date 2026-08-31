@@ -1,0 +1,35 @@
+---
+import type { ProductEvidence } from "@/types";
+
+interface Props {
+  evidence: ProductEvidence;
+}
+
+const { evidence } = Astro.props;
+---
+
+<section class="rounded-lg border border-line bg-paper p-5">
+  <h2 class="text-lg font-semibold">What to verify before buying</h2>
+  <p class="mt-2 text-sm text-muted">
+    Product listings can change. Check the exact variant, size, ingredient or material information,
+    directions, warnings, seller, return terms and current availability before buying.
+  </p>
+  <p class="mt-2 text-sm text-muted">
+    Last checked: {evidence.lastChecked}. {evidence.testedByUs
+      ? "Hands-on evidence is identified where it appears."
+      : "This page does not present hands-on product testing."}
+  </p>
+  {
+    evidence.sourceUrls.length > 0 && (
+      <ul class="mt-3 space-y-2 text-sm">
+        {evidence.sourceUrls.map((url) => (
+          <li>
+            <a href={url} rel="nofollow">
+              Source
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</section>

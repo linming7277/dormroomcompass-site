@@ -1,0 +1,20 @@
+---
+import ArticleLayout from "@/layouts/ArticleLayout.astro";
+import { affiliateConfig } from "@/config/affiliate.config";
+---
+
+<ArticleLayout
+  title="Affiliate Disclosure"
+  description="How affiliate links work on this site."
+  canonicalPath="/affiliate-disclosure/"
+>
+  <p>{affiliateConfig.disclosureLong}</p>
+  <h2>How this affects rankings</h2>
+  <p>
+    Affiliate compensation should not decide whether a product is included,
+    excluded, criticized, or ranked lower. Pages should describe the buyer fit
+    and tradeoffs clearly.
+  </p>
+  <h2>Link policy</h2>
+  <p>{affiliateConfig.merchantLinkPolicy}</p>
+</ArticleLayout>

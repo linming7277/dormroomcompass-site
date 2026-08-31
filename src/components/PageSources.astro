@@ -1,0 +1,20 @@
+---
+interface Props {
+  sourceUrls?: readonly string[];
+}
+
+const { sourceUrls = [] } = Astro.props;
+---
+
+{
+  sourceUrls.length > 0 && (
+    <section class="border-t border-line pt-5" aria-label="Approved sources">
+      <h2 class="text-lg font-semibold">Approved sources</h2>
+      <ul class="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+        {sourceUrls.map((url) => (
+          <li><a href={url} rel="nofollow noopener">Source</a></li>
+        ))}
+      </ul>
+    </section>
+  )
+}

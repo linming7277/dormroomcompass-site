@@ -1,0 +1,38 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { siteConfig } from "@/config/site.config";
+
+const guides = await getCollection("guides");
+---
+
+<BaseLayout
+  title={`Buying Guides - ${siteConfig.name}`}
+  description="Buying guides that answer informational and commercial questions before product selection."
+  canonicalPath="/guides/"
+>
+  <section class="container section space-y-8">
+    <header class="max-w-4xl border-b-4 border-ink pb-6">
+      <p class="section-label">Buyer education</p>
+      <h1 class="page-heading mt-2">Buying Guides</h1>
+      <p class="text-lg text-muted">
+        Guides should support the affiliate funnel with useful pre-purchase
+        education, not restate the same product table in different words.
+      </p>
+    </header>
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        guides.map((guide) => (
+          <a
+            href={`/guides/${guide.data.slug}/`}
+            class="card block p-6 text-ink no-underline hover:border-brand hover:no-underline"
+          >
+            <p class="section-label">Updated {guide.data.dateModified}</p>
+            <h2 class="mt-2 text-2xl font-bold">{guide.data.title}</h2>
+            <p class="mt-3 text-muted">{guide.data.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

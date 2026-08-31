@@ -1,0 +1,26 @@
+---
+import ArticleLayout from "@/layouts/ArticleLayout.astro";
+import { siteConfig } from "@/config/site.config";
+---
+
+<ArticleLayout
+  title="Terms of Use"
+  description={`Terms of use for ${siteConfig.name}.`}
+  canonicalPath="/terms/"
+>
+  <p>
+    The content on this site is provided for general informational purposes.
+    Product details, prices, and availability can change after publication.
+  </p>
+  <h2>No professional advice</h2>
+  <p>
+    Buying guides should help readers compare options, but final purchase
+    decisions remain the reader's responsibility.
+  </p>
+  <h2>Affiliate links</h2>
+  <p>
+    Some outbound links may be affiliate links. See our <a
+      href="/affiliate-disclosure/">Affiliate Disclosure</a
+    > for details.
+  </p>
+</ArticleLayout>

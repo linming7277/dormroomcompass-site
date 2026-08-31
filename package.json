@@ -1,0 +1,53 @@
+{
+  "name": "affiliate-site-astro",
+  "version": "0.1.0",
+  "description": "Config-driven Astro template for lightweight affiliate SEO sites.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "node scripts/validate-product-records.mjs && node scripts/validate-review-content.mjs && node scripts/validate-editorial-content.mjs && node scripts/sync-editorial-index.mjs && node scripts/sync-route-manifest.mjs && astro build",
+    "preview": "astro preview",
+    "check": "node scripts/validate-product-records.mjs && node scripts/validate-review-content.mjs && node scripts/validate-editorial-content.mjs && node scripts/sync-editorial-index.mjs && node scripts/sync-route-manifest.mjs && astro check",
+    "audit:template": "node scripts/audit-template.mjs",
+    "audit:production": "node scripts/audit-production.mjs",
+    "audit:content": "node scripts/audit-longform-content.mjs",
+    "audit:editorial": "node scripts/audit-editorial-surface.mjs",
+    "audit:independence": "node scripts/audit-template-independence.mjs",
+    "report:similarity": "node scripts/audit-content-similarity.mjs",
+    "audit:similarity": "node scripts/audit-content-similarity.mjs --enforce",
+    "inventory:content": "node scripts/generate-content-inventory.mjs",
+    "inventory:template-v2": "node scripts/generate-template-v2-inventory.mjs",
+    "test:inventory": "node --test scripts/test-generate-content-inventory.mjs",
+    "test:editorial-presentation": "node --test scripts/test-editorial-presentation.mjs",
+    "test:audit-editorial": "node --test scripts/test-audit-editorial-surface.mjs",
+    "test:route-manifest": "node --test scripts/test-sync-route-manifest.mjs",
+    "test:editorial-content-sources": "node --test scripts/test-editorial-content-sources.mjs",
+    "test:independence": "node --test scripts/test-audit-template-independence.mjs",
+    "test:product-contract": "node --test scripts/test-validate-product-records.mjs",
+    "test:editorial-contract": "node --test scripts/test-validate-editorial-content.mjs",
+    "test:merchant-rating": "node --test scripts/test-merchant-rating.mjs"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.12",
+    "@astrojs/sitemap": "^3.4.2",
+    "@fontsource-variable/source-sans-3": "^5.2.9",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.1.0",
+    "astro-compress": "^2.4.1",
+    "limax": "4.1.0",
+    "reading-time": "^1.5.0",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@tailwindcss/typography": "^0.5.16",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.8.3"
+  }
+}

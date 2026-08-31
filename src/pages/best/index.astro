@@ -1,0 +1,37 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { siteConfig } from "@/config/site.config";
+
+const bestPicks = await getCollection("bestPicks");
+---
+
+<BaseLayout
+  title={`Best Picks - ${siteConfig.name}`}
+  description="Editorial buying guides that compare product formats, routine roles, and current-listing checks."
+  canonicalPath="/best/"
+>
+  <section class="container section space-y-8">
+    <header class="max-w-4xl border-b-4 border-ink pb-6">
+      <p class="section-label">Decision-stage buying guides</p>
+      <h1 class="page-heading mt-2">Format and product guides</h1>
+      <p class="text-lg text-muted">
+        Each guide names the decision it can help with, explains the tradeoffs,
+        and keeps a no-buy path visible.
+      </p>
+    </header>
+    <div class="divide-y divide-line border-y border-line">
+      {
+        bestPicks.map((pick) => (
+          <a
+            href={`/best/${pick.data.slug}/`}
+            class="grid gap-3 py-6 text-ink no-underline hover:text-brand hover:no-underline md:grid-cols-[0.8fr_1.2fr]"
+          >
+            <h2 class="text-2xl font-bold">{pick.data.title}</h2>
+            <span class="leading-7 text-muted">{pick.data.description}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

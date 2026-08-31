@@ -1,0 +1,79 @@
+---
+import MerchantCTA from "@/components/MerchantCTA.astro";
+import MerchantRating from "@/components/MerchantRating.astro";
+import ResponsiveImage from "@/components/ResponsiveImage.astro";
+import type { Product } from "@/types";
+import { getDisplayProductTitle, getProductIdentity } from "@/utils/data";
+
+interface Props {
+  product: Product;
+  bestFor?: string;
+  skipIf?: string;
+  verdict?: string;
+  pageType: "review" | "best" | "comparison";
+  pageSlug: string;
+  position: string;
+  rank?: number;
+  label?: string;
+  compact?: boolean;
+}
+
+const {
+  product,
+  bestFor = product.bestFor,
+  skipIf = product.skipIf,
+  verdict,
+  pageType,
+  pageSlug,
+  position,
+  rank,
+  label,
+  compact = false,
+} = Astro.props;
+const displayTitle = getDisplayProductTitle(product);
+const productIdentity = getProductIdentity(product);
+const merchantRating = product.merchantDynamicData;
+---
+
+<section class:list={["editorial-card", compact && "editorial-card--compact"]} aria-label={`${productIdentity} buying decision`}>
+  <div class:list={["grid gap-6 md:items-start", compact ? "grid-cols-[4.5rem_minmax(0,1fr)] gap-4 md:grid-cols-[8rem_minmax(0,1fr)]" : "md:grid-cols-[10rem_minmax(0,1fr)]"]}>
+    <ResponsiveImage src={product.image} alt={`${productIdentity} product preview`} width={640} height={640} loading={position === "hero" ? "eager" : "lazy"} aspectClass="aspect-square" class:list={["border border-line", compact && "h-[4.5rem] md:h-32"]} requireImage />
+    <div>
+      <p class="section-kicker">{label || (rank ? `#${rank} pick` : "Product decision")}</p>
+      <h2 class:list={["mt-2 font-bold leading-tight", compact ? "text-lg md:text-xl" : "text-2xl"]}>{displayTitle}</h2>
+      {verdict && <p class:list={["text-muted", compact ? "mt-2 text-sm leading-5" : "mt-3 leading-7"]}>{verdict}</p>}
+      {compact && <div class="mt-2 flex flex-wrap items-center gap-4">
+        <MerchantCTA
+          href={product.affiliateUrl || product.merchantUrl}
+          pageType={pageType}
+          pageSlug={pageSlug}
+          productSlug={product.slug}
+          asin={product.identifiers?.asin}
+          position={position}
+        />
+        <MerchantRating rating={merchantRating} />
+      </div>}
+      <div class:list={["decision-grid border-y border-line", compact ? "decision-grid--compact mt-3 py-3" : "mt-5 py-4 text-sm"]}>
+        <div>
+          <h3 class="font-bold">Best for</h3>
+          <p class="mt-1 leading-6 text-muted">{bestFor}</p>
+        </div>
+        <div>
+          <h3 class="font-bold">Skip if</h3>
+          <p class="mt-1 leading-6 text-muted">{skipIf || "You cannot verify the current listing details or give this format a clear role."}</p>
+        </div>
+      </div>
+      {!compact && <div class="mt-5 flex flex-wrap items-center gap-4">
+        <MerchantCTA
+          href={product.affiliateUrl || product.merchantUrl}
+          pageType={pageType}
+          pageSlug={pageSlug}
+          productSlug={product.slug}
+          asin={product.identifiers?.asin}
+          position={position}
+        />
+        <MerchantRating rating={merchantRating} />
+      </div>}
+    </div>
+  </div>
+</section>

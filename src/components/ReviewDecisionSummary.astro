@@ -1,0 +1,31 @@
+---
+interface Props {
+  decision: {
+    headline: string;
+    bestFit: string;
+    skipIf: string;
+  };
+  testedByUs: boolean;
+}
+
+const { decision, testedByUs } = Astro.props;
+const evidenceMode = testedByUs
+  ? "This page includes hands-on evidence where it is clearly identified."
+  : "This is an editorial buying review based on product, merchant and source information. We did not conduct hands-on product testing.";
+---
+
+<section class="decision-card" aria-labelledby="review-decision-heading">
+  <p class="section-kicker">Quick verdict</p>
+  <h2 id="review-decision-heading" class="mt-1 text-2xl font-bold">{decision.headline}</h2>
+  <div class="decision-grid mt-5">
+    <div>
+      <h3 class="text-sm font-bold">Best for</h3>
+      <p class="mt-1 leading-7">{decision.bestFit}</p>
+    </div>
+    <div>
+      <h3 class="text-sm font-bold text-muted">Skip if</h3>
+      <p class="mt-1 leading-7">{decision.skipIf}</p>
+    </div>
+  </div>
+  <p class="mt-5 border-t border-line pt-4 text-sm leading-6 text-muted">{evidenceMode}</p>
+</section>

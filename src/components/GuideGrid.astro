@@ -1,0 +1,36 @@
+---
+interface GuideMeta {
+  slug: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  guides: Array<{ data: GuideMeta }>;
+}
+
+const { guides } = Astro.props;
+---
+
+{guides.length > 0 && (
+  <section aria-labelledby="guide-grid-heading">
+    <div class="flex flex-col gap-3 border-b-4 border-ink pb-5 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p class="section-label">Start with the question</p>
+        <h2 id="guide-grid-heading" class="mt-1 text-3xl font-bold">Buyer guides and routine explainers</h2>
+        <p class="mt-2 max-w-3xl text-muted">Read the decision framework before comparing a product or following an affiliate link.</p>
+      </div>
+      <a class="text-link shrink-0" href="/guides/">Browse every guide →</a>
+    </div>
+    <div class="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {guides.map((guide) => (
+        <article class="card flex flex-col p-6">
+          <p class="section-label">Buying guide</p>
+          <h3 class="mt-2 text-2xl font-bold leading-tight"><a class="text-ink no-underline hover:text-brand" href={`/guides/${guide.data.slug}/`}>{guide.data.title}</a></h3>
+          <p class="mt-3 leading-7 text-muted">{guide.data.description}</p>
+          <a class="mt-auto pt-5 text-link" href={`/guides/${guide.data.slug}/`}>Read the guide →</a>
+        </article>
+      ))}
+    </div>
+  </section>
+)}

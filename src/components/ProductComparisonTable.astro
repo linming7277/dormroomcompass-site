@@ -1,0 +1,44 @@
+---
+import MerchantCTA from "@/components/MerchantCTA.astro";
+import type { Product } from "@/types";
+import { getDisplayProductTitle, getProductReadingPath } from "@/utils/data";
+
+interface Props {
+  products: Product[];
+  showMerchantCta?: boolean;
+}
+
+const { products, showMerchantCta = false } = Astro.props;
+---
+
+<div class="overflow-x-auto border border-line">
+  <table class="w-full min-w-[820px] border-collapse text-left text-sm">
+    <thead class="bg-ink text-white">
+      <tr>
+        <th class="p-3.5">Product</th>
+        <th class="p-3.5">Decision context</th>
+        <th class="p-3.5">Listing check</th>
+        <th class="p-3.5">Decision</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-line">
+      {
+        products.map((product) => (
+          <tr class="align-top even:bg-paper/60">
+            <td class="p-3.5 font-bold">{getDisplayProductTitle(product)}</td>
+            <td class="p-3.5 text-muted">{product.bestFor}</td>
+            <td class="p-3.5 text-muted">
+              Check the exact variant, directions and ingredients or materials on the current listing.
+            </td>
+            <td class="p-3.5">
+              <div class="flex flex-wrap gap-3">
+                <a class="text-link" href={getProductReadingPath(product.slug)}>Read context →</a>
+                {showMerchantCta && <MerchantCTA href={product.affiliateUrl || product.merchantUrl} label="Check listing" productSlug={product.slug} asin={product.identifiers?.asin} />}
+              </div>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

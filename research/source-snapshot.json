@@ -1,0 +1,439 @@
+{
+  "schema_version": "affiliate-source-snapshot-v1",
+  "intake_id": "aff-709a5e05fbf1d6d0",
+  "selected_product_keys": [
+    "YP:default:402945:2850220",
+    "PB:default:138745:8dc62c2ac292d652348ef3a016987618",
+    "YP:default:384917:1314165",
+    "YP:default:380959:1143029"
+  ],
+  "selected_products": [
+    {
+      "asin": "B0BN51YQ5X",
+      "availability": null,
+      "brand_commercial_validated": true,
+      "brand_match_confidence": "high",
+      "brand_name": "Aroeve",
+      "brand_order_count": 14,
+      "category": "home",
+      "commission_text": "7.5",
+      "country": null,
+      "normalized_brand_name": "aroeve",
+      "platform": "YP",
+      "platform_brand_id": "402945",
+      "platform_product_id": "2850220",
+      "price_text": "USD 29.99",
+      "product_commercial_validated": false,
+      "product_image_url": "https://m.media-amazon.com/images/I/61GhLheefiL.jpg",
+      "product_key": "YP:default:402945:2850220",
+      "product_order_count": 0,
+      "product_url": "https://www.amazon.com/dp/B0BN51YQ5X",
+      "promotion_url": "https://yeahpromos.com/index/index/openurlproduct?track=953c4920fa978578&pid=2850220",
+      "rating_text": null,
+      "raw_brand_name": "Aroeve",
+      "record_id": 6292,
+      "reviews": 12729,
+      "subcategory": "air-quality",
+      "title": "AROEVE Air Purifiers for Bedroom with Aromatherapy Function-MK06A(Black)",
+      "updated_at": "2026-08-31T08:24:01.341019+08:00"
+    },
+    {
+      "asin": "B0DS25SXZ3",
+      "availability": "IN_STOCK",
+      "brand_commercial_validated": true,
+      "brand_match_confidence": "high",
+      "brand_name": "Koonie",
+      "brand_order_count": 12,
+      "category": "Patio, Lawn & Garden",
+      "commission_text": "10%",
+      "country": "US",
+      "normalized_brand_name": "koonie",
+      "platform": "PB",
+      "platform_brand_id": "138745",
+      "platform_product_id": "8dc62c2ac292d652348ef3a016987618",
+      "price_text": "$49.99",
+      "product_commercial_validated": true,
+      "product_image_url": "https://m.media-amazon.com/images/I/41B2X-PTxPL._SS500_.jpg",
+      "product_key": "PB:default:138745:8dc62c2ac292d652348ef3a016987618",
+      "product_order_count": 1,
+      "product_url": "https://www.amazon.com/dp/B0DS25SXZ3",
+      "promotion_url": "https://app.partnerboost.com/track/731a8LWRtoRmr_bYRkC_acHfrYsH8Yu4FzfoT21vorbqCVT5A7iGkPn_b8Fhv18uq_bJxJ19l0EIvWe24avXbDYz?url=https%3A%2F%2Fwww.amazon.com%2Fdp%2FB0DS25SXZ3%3Fmaas%3Dmaas_adg_api_580297276123485534_static_12_201%26ref_%3Daa_maas%26tag%3Dmaas%26aa_campaignid%3DPB2906de7db560291103dc29ee248954f7%26aa_adgroupid%3D3b00dVAmtOIq7OBE9nFovgDAM_awOddRAsLu7udaFAbCl_bhcbdHBNEHSn4yA1YdWA_b_ahiGtx_alRGQ0tHAq1hpcSU_c%26aa_creativeid%3D5372fIZ1WOhIEKlR5zKw3SJRcJl2s3ZhS5j4tEF2lwZ7yN4_c",
+      "rating_text": "4.2",
+      "raw_brand_name": "Koonie",
+      "record_id": 6522,
+      "reviews": 1299,
+      "subcategory": "fans-and-airflow",
+      "title": "Koonie 8'' 10000mAh Battery Operated Misting Fan with Max. 48 Hrs Runtime",
+      "updated_at": "2026-08-31T08:24:05.577516+08:00"
+    },
+    {
+      "asin": "B09CZ68WV3",
+      "availability": null,
+      "brand_commercial_validated": true,
+      "brand_match_confidence": "high",
+      "brand_name": "myhalos",
+      "brand_order_count": 4,
+      "category": "health",
+      "commission_text": "18.75",
+      "country": null,
+      "normalized_brand_name": "myhalos",
+      "platform": "YP",
+      "platform_brand_id": "384917",
+      "platform_product_id": "1314165",
+      "price_text": "USD9.99",
+      "product_commercial_validated": true,
+      "product_image_url": "https://m.media-amazon.com/images/I/41tFrrvUeoL._SS60_.jpg",
+      "product_key": "YP:default:384917:1314165",
+      "product_order_count": 2,
+      "product_url": "https://www.amazon.com/dp/B09CZ68WV3",
+      "promotion_url": "https://yeahpromos.com/index/index/openurlproduct?track=66eb99af8171eb08&pid=1314165",
+      "rating_text": null,
+      "raw_brand_name": "myhalos",
+      "record_id": 6273,
+      "reviews": 22666,
+      "subcategory": "sleep-accessories",
+      "title": "MyHalos® Sleep Mask for Men and Women, 3D Blackout Eye Masks for Sleep",
+      "updated_at": "2026-08-31T08:24:11.343082+08:00"
+    },
+    {
+      "asin": "B0C5Z8VCHX",
+      "availability": null,
+      "brand_commercial_validated": true,
+      "brand_match_confidence": "high",
+      "brand_name": "Chefman",
+      "brand_order_count": 3,
+      "category": "home",
+      "commission_text": "7.5",
+      "country": null,
+      "normalized_brand_name": "chefman",
+      "platform": "YP",
+      "platform_brand_id": "380959",
+      "platform_product_id": "1143029",
+      "price_text": "USD 23.53",
+      "product_commercial_validated": true,
+      "product_image_url": "https://m.media-amazon.com/images/I/81hvKNPIHKL.jpg",
+      "product_key": "YP:default:380959:1143029",
+      "product_order_count": 1,
+      "product_url": "https://www.amazon.com/dp/B0C5Z8VCHX",
+      "promotion_url": "https://yeahpromos.com/index/index/openurlproduct?track=3017cd96cd02ebd1&pid=1143029",
+      "rating_text": null,
+      "raw_brand_name": "Chefman",
+      "record_id": 6608,
+      "reviews": 13493,
+      "subcategory": "small-kitchen-appliances",
+      "title": "Chefman Electric Kettle, 1.8L 1500W, Hot Water Boiler, Removable Lid for Easy Cleaning, Auto Shut Off, Boil-Dry Protection, Stainless Steel Filter, BPA Free, Borosilicate Glass Electric Tea Kettle, 1.9 Quarts, Black",
+      "updated_at": "2026-08-31T08:24:07.312989+08:00"
+    }
+  ],
+  "product_evidence": [
+    {
+      "affiliate_url": "https://yeahpromos.com/index/index/openurlproduct?track=953c4920fa978578&pid=2850220",
+      "facts": [
+        {
+          "fact": "AROEVE's MK06 page lists dimensions of 6.1 by 6.1 by 9.6 inches and a weight of 3 pounds.",
+          "source_url": "https://aroeve.com/products/aroeve-air-purifiers-mk06"
+        },
+        {
+          "fact": "The official MK06 page lists a 20 dB sleep-mode claim and a room-area claim up to 215 square feet; both are manufacturer claims, not independently tested here.",
+          "source_url": "https://aroeve.com/products/aroeve-air-purifiers-mk06"
+        },
+        {
+          "fact": "The official page recommends replacing the filter cartridge every 3 to 6 months and describes a 2,000-hour replacement reminder.",
+          "source_url": "https://aroeve.com/products/aroeve-air-purifiers-mk06"
+        },
+        {
+          "fact": "EPA guidance says portable air-cleaner selection should account for room size and CADR, and that no air cleaner removes all pollutants.",
+          "source_url": "https://www.epa.gov/indoor-air-quality-iaq/air-cleaners-and-air-filters-home"
+        }
+      ],
+      "media": [
+        {
+          "kind": "image",
+          "note": "Unmodified product creative supplied through the joined YeahPromos publisher product feed; use is limited to affiliate promotion under the publisher agreement.",
+          "rights_status": "verified",
+          "source_url": "https://www.yeahpromos.com/index/index/policy",
+          "url": "https://m.media-amazon.com/images/I/61GhLheefiL.jpg"
+        }
+      ],
+      "observed_at": "2026-08-31T00:45:00Z",
+      "product_key": "YP:default:402945:2850220",
+      "product_title": "AROEVE Air Purifiers for Bedroom with Aromatherapy Function-MK06A (Black)",
+      "product_url": "https://www.amazon.com/dp/B0BN51YQ5X"
+    },
+    {
+      "affiliate_url": "https://app.partnerboost.com/track/731a8LWRtoRmr_bYRkC_acHfrYsH8Yu4FzfoT21vorbqCVT5A7iGkPn_b8Fhv18uq_bJxJ19l0EIvWe24avXbDYz?url=https%3A%2F%2Fwww.amazon.com%2Fdp%2FB0DS25SXZ3%3Fmaas%3Dmaas_adg_api_580297276123485534_static_12_201%26ref_%3Daa_maas%26tag%3Dmaas%26aa_campaignid%3DPB2906de7db560291103dc29ee248954f7%26aa_adgroupid%3D3b00dVAmtOIq7OBE9nFovgDAM_awOddRAsLu7udaFAbCl_bhcbdHBNEHSn4yA1YdWA_b_ahiGtx_alRGQ0tHAq1hpcSU_c%26aa_creativeid%3D5372fIZ1WOhIEKlR5zKw3SJRcJl2s3ZhS5j4tEF2lwZ7yN4_c",
+      "facts": [
+        {
+          "fact": "The current merchant listing identifies this exact ASIN as an 8-inch rechargeable misting fan with a 10,000 mAh battery.",
+          "source_url": "https://www.amazon.com/dp/B0DS25SXZ3"
+        },
+        {
+          "fact": "The listing describes three fan speeds, two spray modes, a 200 mL tank, and a clip/desk format; runtime remains a merchant claim and was not independently tested.",
+          "source_url": "https://www.amazon.com/dp/B0DS25SXZ3"
+        },
+        {
+          "fact": "The PartnerBoost datafeed returned the exact ASIN, product image, in-stock state, and a product-specific tracking link during the API-first collection pass.",
+          "source_url": "https://docs.partnerboost.com/developers/publisher-api/amazon/"
+        }
+      ],
+      "media": [
+        {
+          "kind": "image",
+          "note": "Unmodified primary image returned by the joined PartnerBoost product datafeed; PartnerBoost publisher terms sublicense Brand Materials for affiliate promotion.",
+          "rights_status": "verified",
+          "source_url": "https://www.partnerboost.com/terms-of-use-publisher/",
+          "url": "https://m.media-amazon.com/images/I/41B2X-PTxPL._SS500_.jpg"
+        }
+      ],
+      "observed_at": "2026-08-31T00:45:30Z",
+      "product_key": "PB:default:138745:8dc62c2ac292d652348ef3a016987618",
+      "product_title": "Koonie 8-inch 10000mAh Battery Operated Misting Fan",
+      "product_url": "https://www.amazon.com/dp/B0DS25SXZ3"
+    },
+    {
+      "affiliate_url": "https://yeahpromos.com/index/index/openurlproduct?track=66eb99af8171eb08&pid=1314165",
+      "facts": [
+        {
+          "fact": "The official MyHalos page describes a 3D contoured sleep-mask format with recessed eye cups and an adjustable strap.",
+          "source_url": "https://myhalos.com/products/blackout-sleep-mask"
+        },
+        {
+          "fact": "The official care guidance says to hand wash the mask in cool water with mild soap and air dry it.",
+          "source_url": "https://myhalos.com/products/blackout-sleep-mask"
+        },
+        {
+          "fact": "CDC sleep-environment guidance notes that an eye mask can be used when ambient light cannot otherwise be avoided; this does not establish product-specific sleep outcomes.",
+          "source_url": "https://www.cdc.gov/niosh/bulletin/2020/sleep.html"
+        }
+      ],
+      "media": [
+        {
+          "kind": "image",
+          "note": "Unmodified product creative supplied through the joined YeahPromos publisher product feed; use is limited to affiliate promotion under the publisher agreement.",
+          "rights_status": "verified",
+          "source_url": "https://www.yeahpromos.com/index/index/policy",
+          "url": "https://m.media-amazon.com/images/I/41tFrrvUeoL._SS60_.jpg"
+        }
+      ],
+      "observed_at": "2026-08-31T00:46:00Z",
+      "product_key": "YP:default:384917:1314165",
+      "product_title": "MyHalos 3D Blackout Sleep Mask",
+      "product_url": "https://www.amazon.com/dp/B09CZ68WV3"
+    },
+    {
+      "affiliate_url": "https://yeahpromos.com/index/index/openurlproduct?track=3017cd96cd02ebd1&pid=1143029",
+      "facts": [
+        {
+          "fact": "Chefman's official product page lists a 1.8-liter borosilicate-glass kettle with 1500 W / 120 V power.",
+          "source_url": "https://chefman.com/products/1-8l-stainless-steel-electric-kettle"
+        },
+        {
+          "fact": "The official page lists automatic shutoff, boil-dry protection, a removable lid, a 360-degree base, and a stainless-steel filter.",
+          "source_url": "https://chefman.com/products/1-8l-stainless-steel-electric-kettle"
+        },
+        {
+          "fact": "University residence-hall policies differ: some permit kettles with automatic shutoff while others impose room-specific appliance limits, so shoppers must check their own housing policy before purchase.",
+          "source_url": "https://www.ithaca.edu/office-residential-life/policies/appliances"
+        }
+      ],
+      "media": [
+        {
+          "kind": "image",
+          "note": "Unmodified product creative supplied through the joined YeahPromos publisher product feed; use is limited to affiliate promotion under the publisher agreement.",
+          "rights_status": "verified",
+          "source_url": "https://www.yeahpromos.com/index/index/policy",
+          "url": "https://m.media-amazon.com/images/I/81hvKNPIHKL.jpg"
+        }
+      ],
+      "observed_at": "2026-08-31T00:46:30Z",
+      "product_key": "YP:default:380959:1143029",
+      "product_title": "Chefman 1.8L 1500W Electric Kettle",
+      "product_url": "https://www.amazon.com/dp/B0C5Z8VCHX"
+    }
+  ],
+  "keyword_clusters": [
+    {
+      "cluster_id": "dorm-essentials-home",
+      "evidence_urls": [
+        "https://housing.wfu.edu/guide-to-community-living/chapter-4-policies-and-procedures/"
+      ],
+      "intent": "commercial investigation",
+      "page_type": "home",
+      "primary_keyword": "college dorm room essentials",
+      "supporting_keywords": [
+        "dorm essentials guide",
+        "small dorm comfort products",
+        "what to buy for a dorm room"
+      ]
+    },
+    {
+      "cluster_id": "dorm-room-category",
+      "evidence_urls": [
+        "https://www.ithaca.edu/office-residential-life/policies/appliances"
+      ],
+      "intent": "commercial investigation",
+      "page_type": "category",
+      "primary_keyword": "dorm room comfort essentials",
+      "supporting_keywords": [
+        "dorm room airflow",
+        "dorm sleep accessories",
+        "dorm electric kettle rules"
+      ]
+    },
+    {
+      "cluster_id": "dorm-comfort-best",
+      "evidence_urls": [
+        "https://www.epa.gov/indoor-air-quality-iaq/air-cleaners-and-air-filters-home",
+        "https://www.cdc.gov/niosh/bulletin/2020/sleep.html"
+      ],
+      "intent": "commercial shortlist",
+      "page_type": "best",
+      "primary_keyword": "dorm room comfort essentials for sleep and airflow",
+      "supporting_keywords": [
+        "dorm fan or air purifier",
+        "sleep mask for dorm room",
+        "small dorm room comfort"
+      ]
+    },
+    {
+      "cluster_id": "fan-vs-air-purifier",
+      "evidence_urls": [
+        "https://www.epa.gov/indoor-air-quality-iaq/air-cleaners-and-air-filters-home",
+        "https://www.amazon.com/dp/B0DS25SXZ3"
+      ],
+      "intent": "comparison",
+      "page_type": "comparison",
+      "primary_keyword": "dorm fan vs air purifier",
+      "supporting_keywords": [
+        "airflow vs air filtration dorm",
+        "fan or purifier for dorm room",
+        "dorm room cooling vs filtration"
+      ]
+    },
+    {
+      "cluster_id": "dorm-buying-checklist",
+      "evidence_urls": [
+        "https://www.ithaca.edu/office-residential-life/policies/appliances",
+        "https://college.yale.edu/welcome-yale-college/new-student-faqs"
+      ],
+      "intent": "informational commercial",
+      "page_type": "guide",
+      "primary_keyword": "how to choose dorm room essentials",
+      "supporting_keywords": [
+        "dorm appliance rules",
+        "dorm room buying checklist",
+        "small-space dorm products"
+      ]
+    },
+    {
+      "cluster_id": "aroeve-mk06-review",
+      "evidence_urls": [
+        "https://aroeve.com/products/aroeve-air-purifiers-mk06"
+      ],
+      "intent": "commercial investigation",
+      "page_type": "review",
+      "primary_keyword": "AROEVE MK06 review",
+      "supporting_keywords": [
+        "AROEVE MK06 dorm room",
+        "AROEVE MK06 size",
+        "AROEVE MK06 filter replacement"
+      ]
+    },
+    {
+      "cluster_id": "koonie-misting-fan-review",
+      "evidence_urls": [
+        "https://www.amazon.com/dp/B0DS25SXZ3"
+      ],
+      "intent": "commercial investigation",
+      "page_type": "review",
+      "primary_keyword": "Koonie misting fan review",
+      "supporting_keywords": [
+        "Koonie 8 inch misting fan",
+        "rechargeable dorm desk fan",
+        "clip fan with mist"
+      ]
+    },
+    {
+      "cluster_id": "myhalos-sleep-mask-review",
+      "evidence_urls": [
+        "https://myhalos.com/products/blackout-sleep-mask"
+      ],
+      "intent": "commercial investigation",
+      "page_type": "review",
+      "primary_keyword": "MyHalos sleep mask review",
+      "supporting_keywords": [
+        "MyHalos 3D blackout mask",
+        "sleep mask for dorm room",
+        "MyHalos mask care"
+      ]
+    },
+    {
+      "cluster_id": "chefman-kettle-review",
+      "evidence_urls": [
+        "https://chefman.com/products/1-8l-stainless-steel-electric-kettle",
+        "https://www.ithaca.edu/office-residential-life/policies/appliances"
+      ],
+      "intent": "commercial investigation",
+      "page_type": "review",
+      "primary_keyword": "Chefman 1.8L electric kettle review",
+      "supporting_keywords": [
+        "Chefman 1500W kettle",
+        "electric kettle for dorm room",
+        "Chefman kettle auto shutoff"
+      ]
+    },
+    {
+      "cluster_id": "aroeve-brand",
+      "evidence_urls": [
+        "https://aroeve.com/products/aroeve-air-purifiers-mk06"
+      ],
+      "intent": "brand navigation",
+      "page_type": "brand",
+      "primary_keyword": "AROEVE dorm room air purifier guide",
+      "supporting_keywords": [
+        "AROEVE MK06",
+        "AROEVE small room purifier"
+      ]
+    },
+    {
+      "cluster_id": "koonie-brand",
+      "evidence_urls": [
+        "https://www.amazon.com/dp/B0DS25SXZ3"
+      ],
+      "intent": "brand navigation",
+      "page_type": "brand",
+      "primary_keyword": "Koonie dorm fan guide",
+      "supporting_keywords": [
+        "Koonie misting fan",
+        "Koonie rechargeable fan"
+      ]
+    },
+    {
+      "cluster_id": "myhalos-brand",
+      "evidence_urls": [
+        "https://myhalos.com/products/blackout-sleep-mask"
+      ],
+      "intent": "brand navigation",
+      "page_type": "brand",
+      "primary_keyword": "MyHalos sleep mask guide",
+      "supporting_keywords": [
+        "MyHalos blackout mask",
+        "MyHalos 3D mask"
+      ]
+    },
+    {
+      "cluster_id": "chefman-brand",
+      "evidence_urls": [
+        "https://chefman.com/products/1-8l-stainless-steel-electric-kettle"
+      ],
+      "intent": "brand navigation",
+      "page_type": "brand",
+      "primary_keyword": "Chefman dorm kettle guide",
+      "supporting_keywords": [
+        "Chefman 1.8L kettle",
+        "Chefman auto shutoff kettle"
+      ]
+    }
+  ],
+  "intake_package_sha256": "8c1edca1b293a3e58dd9b023f79766b83e1d113d8cdde1f7131b63daf0d15d83"
+}
