@@ -1,4 +1,4 @@
 export const analyticsConfig = {
-  enabled: false,
-  measurementId: undefined,
+  enabled: true,
+  measurementId: "G-5DVLMNCNRG",
 } as const;
