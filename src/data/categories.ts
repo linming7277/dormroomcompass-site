@@ -15,12 +15,14 @@ export const categories: Category[] = [
     "priority": 1,
     "recommendedProductSlugs": [
       "aroeve-mk06-air-purifier",
+      "koonie-10000mah-clip-on-fan",
       "koonie-rechargeable-misting-fan",
       "myhalos-3d-blackout-sleep-mask",
       "chefman-1-8l-electric-kettle"
     ],
     "sourceUrls": [
-      "https://www.ithaca.edu/office-residential-life/policies/appliances"
+      "https://www.ithaca.edu/office-residential-life/policies/appliances",
+      "https://www.amazon.com/dp/B08866RDYK"
     ]
   }
 ];

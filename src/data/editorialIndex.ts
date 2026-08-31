@@ -84,6 +84,23 @@ export const editorialReviews = [
     ]
   },
   {
+    "productSlug": "koonie-10000mah-clip-on-fan",
+    "title": "Koonie 10000mAh Clip-On Fan Review: Does the 8-Inch Format Fit a Dorm?",
+    "description": "An editorial buying review of the Koonie 8-inch rechargeable clip-on fan, focused on placement, charging, personal airflow, limitations, and dorm-room fit.",
+    "guideSlug": "dorm-room-buying-checklist",
+    "decision": {
+      "headline": "Consider it when a stable clamp point and rechargeable personal airflow solve a real desk or bedside placement problem.",
+      "bestFit": "Students who need direct airflow near one personal area and cannot rely on a convenient outlet or open desk space.",
+      "skipIf": "You need whole-room cooling, have nowhere safe to clamp it, or want a fan that can run without a charging routine."
+    },
+    "datePublished": "2026-08-31",
+    "dateModified": "2026-08-31",
+    "sourceUrls": [
+      "https://docs.partnerboost.com/developers/publisher-api/amazon/",
+      "https://www.amazon.com/dp/B08866RDYK"
+    ]
+  },
+  {
     "productSlug": "koonie-rechargeable-misting-fan",
     "title": "Koonie Rechargeable Misting Fan Review: Useful for a Dorm Desk?",
     "description": "A practical look at the Koonie 8-inch fan's clip-and-desk format, rechargeable battery, mist upkeep, placement, and dorm-room tradeoffs.",

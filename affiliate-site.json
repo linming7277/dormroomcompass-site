@@ -67,6 +67,15 @@
         ]
       },
       {
+        "product_key": "PB:default:138745:88553150e12875a2b53cc74b3125ba24",
+        "product_url": "https://www.amazon.com/dp/B08866RDYK",
+        "affiliate_url": "https://app.partnerboost.com/track/1ec6IxuGtP7rs9boHOIZXn2m2E6ER3_ahB5j0jMd9J1hSLxW3_aBCH8VfAW6tnGk9IvMpOSwD9mOlQn9rOW9gA?url=https%3A%2F%2Fwww.amazon.com%2Fdp%2FB08866RDYK%3Fmaas%3Dmaas_adg_api_580297276123485534_static_12_201%26ref_%3Daa_maas%26tag%3Dmaas%26aa_campaignid%3DPB2906de7db560291103dc29ee248954f7%26aa_adgroupid%3Dc05dT6b_bvTCGXTjlgDAI81rSbIDO0PNZ1bAqhUh0ATSPq6NUst8PBRQDVLVLy9I98okYFXCp0xgFbIOLZDoB50w_c%26aa_creativeid%3D2f7d2A0hTgtmaRi6jwJtw9BDf0IRxBE_bgeHt1FlbhwuYtRs_c",
+        "source_urls": [
+          "https://docs.partnerboost.com/developers/publisher-api/amazon/",
+          "https://www.amazon.com/dp/B08866RDYK"
+        ]
+      },
+      {
         "product_key": "YP:default:384917:1314165",
         "product_url": "https://www.amazon.com/dp/B09CZ68WV3",
         "affiliate_url": "https://yeahpromos.com/index/index/openurlproduct?track=66eb99af8171eb08&pid=1314165",
@@ -94,6 +103,11 @@
       {
         "product_key": "PB:default:138745:8dc62c2ac292d652348ef3a016987618",
         "url": "https://m.media-amazon.com/images/I/41B2X-PTxPL._SS500_.jpg",
+        "status": "verified"
+      },
+      {
+        "product_key": "PB:default:138745:88553150e12875a2b53cc74b3125ba24",
+        "url": "https://m.media-amazon.com/images/I/51VBJ4N0oKL._SS500_.jpg",
         "status": "verified"
       },
       {
@@ -229,12 +243,14 @@
         "buyer_task": "Navigate products by airflow, air quality, sleep, and permitted hot-water needs while checking housing restrictions.",
         "product_keys": [
           "YP:default:402945:2850220",
+          "PB:default:138745:88553150e12875a2b53cc74b3125ba24",
           "PB:default:138745:8dc62c2ac292d652348ef3a016987618",
           "YP:default:384917:1314165",
           "YP:default:380959:1143029"
         ],
         "source_urls": [
-          "https://www.ithaca.edu/office-residential-life/policies/appliances"
+          "https://www.ithaca.edu/office-residential-life/policies/appliances",
+          "https://www.amazon.com/dp/B08866RDYK"
         ],
         "products": [
           {
@@ -276,6 +292,27 @@
             "media": [
               {
                 "url": "https://m.media-amazon.com/images/I/41B2X-PTxPL._SS500_.jpg",
+                "source_url": "https://www.partnerboost.com/terms-of-use-publisher/",
+                "rights_status": "verified"
+              }
+            ]
+          },
+          {
+            "product_key": "PB:default:138745:88553150e12875a2b53cc74b3125ba24",
+            "title": "Koonie 10000mAh Clip on Fan Rechargeable, 8-Inch Battery Operated Desk Fan, Black",
+            "affiliate_url": "https://app.partnerboost.com/track/1ec6IxuGtP7rs9boHOIZXn2m2E6ER3_ahB5j0jMd9J1hSLxW3_aBCH8VfAW6tnGk9IvMpOSwD9mOlQn9rOW9gA?url=https%3A%2F%2Fwww.amazon.com%2Fdp%2FB08866RDYK%3Fmaas%3Dmaas_adg_api_580297276123485534_static_12_201%26ref_%3Daa_maas%26tag%3Dmaas%26aa_campaignid%3DPB2906de7db560291103dc29ee248954f7%26aa_adgroupid%3Dc05dT6b_bvTCGXTjlgDAI81rSbIDO0PNZ1bAqhUh0ATSPq6NUst8PBRQDVLVLy9I98okYFXCp0xgFbIOLZDoB50w_c%26aa_creativeid%3D2f7d2A0hTgtmaRi6jwJtw9BDf0IRxBE_bgeHt1FlbhwuYtRs_c",
+            "facts": [
+              "The current merchant snapshot identifies this exact ASIN as the black 8-inch rechargeable clip-on fan with a listed 10,000 mAh battery.",
+              "The listing describes four speed settings, USB-C charging, a clamp/desk format, and multidirectional adjustment; runtime, airflow, and noise remain untested merchant claims.",
+              "The existing ordered-product record reports five orders and the PartnerBoost product library supplies the product image and product-specific tracking URL."
+            ],
+            "source_urls": [
+              "https://docs.partnerboost.com/developers/publisher-api/amazon/",
+              "https://www.amazon.com/dp/B08866RDYK"
+            ],
+            "media": [
+              {
+                "url": "https://m.media-amazon.com/images/I/51VBJ4N0oKL._SS500_.jpg",
                 "source_url": "https://www.partnerboost.com/terms-of-use-publisher/",
                 "rights_status": "verified"
               }
@@ -666,6 +703,45 @@
         ]
       },
       {
+        "page_id": "review-koonie-clip-on-fan",
+        "route": "/reviews/koonie-10000mah-clip-on-fan/",
+        "page_type": "review",
+        "slug": "koonie-10000mah-clip-on-fan",
+        "title": "Koonie 10000mAh Clip-On Fan Review: Does the 8-Inch Format Fit a Dorm?",
+        "primary_keyword": "Koonie 10000mAh clip on fan review",
+        "buyer_task": "Decide whether the rechargeable clamp-and-desk format solves a real personal-airflow and placement problem in a dorm room.",
+        "product_keys": [
+          "PB:default:138745:88553150e12875a2b53cc74b3125ba24"
+        ],
+        "source_urls": [
+          "https://docs.partnerboost.com/developers/publisher-api/amazon/",
+          "https://www.amazon.com/dp/B08866RDYK"
+        ],
+        "products": [
+          {
+            "product_key": "PB:default:138745:88553150e12875a2b53cc74b3125ba24",
+            "title": "Koonie 10000mAh Clip on Fan Rechargeable, 8-Inch Battery Operated Desk Fan, Black",
+            "affiliate_url": "https://app.partnerboost.com/track/1ec6IxuGtP7rs9boHOIZXn2m2E6ER3_ahB5j0jMd9J1hSLxW3_aBCH8VfAW6tnGk9IvMpOSwD9mOlQn9rOW9gA?url=https%3A%2F%2Fwww.amazon.com%2Fdp%2FB08866RDYK%3Fmaas%3Dmaas_adg_api_580297276123485534_static_12_201%26ref_%3Daa_maas%26tag%3Dmaas%26aa_campaignid%3DPB2906de7db560291103dc29ee248954f7%26aa_adgroupid%3Dc05dT6b_bvTCGXTjlgDAI81rSbIDO0PNZ1bAqhUh0ATSPq6NUst8PBRQDVLVLy9I98okYFXCp0xgFbIOLZDoB50w_c%26aa_creativeid%3D2f7d2A0hTgtmaRi6jwJtw9BDf0IRxBE_bgeHt1FlbhwuYtRs_c",
+            "facts": [
+              "The current merchant snapshot identifies this exact ASIN as the black 8-inch rechargeable clip-on fan with a listed 10,000 mAh battery.",
+              "The listing describes four speed settings, USB-C charging, a clamp/desk format, and multidirectional adjustment; runtime, airflow, and noise remain untested merchant claims.",
+              "The existing ordered-product record reports five orders and the PartnerBoost product library supplies the product image and product-specific tracking URL."
+            ],
+            "source_urls": [
+              "https://docs.partnerboost.com/developers/publisher-api/amazon/",
+              "https://www.amazon.com/dp/B08866RDYK"
+            ],
+            "media": [
+              {
+                "url": "https://m.media-amazon.com/images/I/51VBJ4N0oKL._SS500_.jpg",
+                "source_url": "https://www.partnerboost.com/terms-of-use-publisher/",
+                "rights_status": "verified"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "page_id": "review-myhalos-blackout-sleep-mask",
         "route": "/reviews/myhalos-3d-blackout-sleep-mask/",
         "page_type": "review",
@@ -792,14 +868,37 @@
         "slug": "koonie",
         "title": "Koonie Product Research for Dorm Rooms",
         "primary_keyword": "Koonie dorm fan guide",
-        "buyer_task": "See the currently researched Koonie product and understand the indoor airflow, misting, battery, and cleaning tradeoffs.",
+        "buyer_task": "Compare the currently researched Koonie fan formats around placement, charging, personal airflow, and whether mist adds useful flexibility or unnecessary upkeep.",
         "product_keys": [
+          "PB:default:138745:88553150e12875a2b53cc74b3125ba24",
           "PB:default:138745:8dc62c2ac292d652348ef3a016987618"
         ],
         "source_urls": [
-          "https://www.amazon.com/dp/B0DS25SXZ3"
+          "https://www.amazon.com/dp/B0DS25SXZ3",
+          "https://www.amazon.com/dp/B08866RDYK"
         ],
         "products": [
+          {
+            "product_key": "PB:default:138745:88553150e12875a2b53cc74b3125ba24",
+            "title": "Koonie 10000mAh Clip on Fan Rechargeable, 8-Inch Battery Operated Desk Fan, Black",
+            "affiliate_url": "https://app.partnerboost.com/track/1ec6IxuGtP7rs9boHOIZXn2m2E6ER3_ahB5j0jMd9J1hSLxW3_aBCH8VfAW6tnGk9IvMpOSwD9mOlQn9rOW9gA?url=https%3A%2F%2Fwww.amazon.com%2Fdp%2FB08866RDYK%3Fmaas%3Dmaas_adg_api_580297276123485534_static_12_201%26ref_%3Daa_maas%26tag%3Dmaas%26aa_campaignid%3DPB2906de7db560291103dc29ee248954f7%26aa_adgroupid%3Dc05dT6b_bvTCGXTjlgDAI81rSbIDO0PNZ1bAqhUh0ATSPq6NUst8PBRQDVLVLy9I98okYFXCp0xgFbIOLZDoB50w_c%26aa_creativeid%3D2f7d2A0hTgtmaRi6jwJtw9BDf0IRxBE_bgeHt1FlbhwuYtRs_c",
+            "facts": [
+              "The current merchant snapshot identifies this exact ASIN as the black 8-inch rechargeable clip-on fan with a listed 10,000 mAh battery.",
+              "The listing describes four speed settings, USB-C charging, a clamp/desk format, and multidirectional adjustment; runtime, airflow, and noise remain untested merchant claims.",
+              "The existing ordered-product record reports five orders and the PartnerBoost product library supplies the product image and product-specific tracking URL."
+            ],
+            "source_urls": [
+              "https://docs.partnerboost.com/developers/publisher-api/amazon/",
+              "https://www.amazon.com/dp/B08866RDYK"
+            ],
+            "media": [
+              {
+                "url": "https://m.media-amazon.com/images/I/51VBJ4N0oKL._SS500_.jpg",
+                "source_url": "https://www.partnerboost.com/terms-of-use-publisher/",
+                "rights_status": "verified"
+              }
+            ]
+          },
           {
             "product_key": "PB:default:138745:8dc62c2ac292d652348ef3a016987618",
             "title": "Koonie 8-inch 10000mAh Battery Operated Misting Fan",

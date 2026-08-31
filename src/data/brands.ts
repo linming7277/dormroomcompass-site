@@ -21,9 +21,10 @@ export const brands: Brand[] = [
   {
     "slug": "koonie",
     "name": "Koonie",
-    "description": "Our Koonie coverage focuses on the rechargeable misting fan format: airflow, placement, charging, water upkeep, and whether mist is sensible indoors.",
+    "description": "Our Koonie coverage compares rechargeable clip-on fan formats around personal airflow, placement, charging, and whether a mist feature adds useful flexibility or unnecessary upkeep.",
     "sourceUrls": [
-      "https://www.amazon.com/dp/B0DS25SXZ3"
+      "https://www.amazon.com/dp/B0DS25SXZ3",
+      "https://www.amazon.com/dp/B08866RDYK"
     ]
   },
   {
