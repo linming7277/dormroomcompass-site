@@ -5,8 +5,6 @@ import EvidenceNotes from "@/components/EvidenceNotes.astro";
 import EditorialByline from "@/components/EditorialByline.astro";
 import MerchantCTA from "@/components/MerchantCTA.astro";
 import ProductCard from "@/components/ProductCard.astro";
-import ProductDecisionCard from "@/components/ProductDecisionCard.astro";
-import ReviewDecisionSummary from "@/components/ReviewDecisionSummary.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection, getEntry, render } from "astro:content";
 import { assertFound, getDisplayProductTitle, getProduct, getProductIdentity, getProductsByCategory } from "@/utils/data";
@@ -98,17 +96,6 @@ const breadcrumbs = [
 
     <div class="container space-y-10 py-10 md:py-14">
       <AffiliateDisclosure />
-      <ProductDecisionCard
-        product={product}
-        bestFor={review.data.decision.bestFit}
-        skipIf={review.data.decision.skipIf}
-        verdict={review.data.decision.headline}
-        pageType="review"
-        pageSlug={product.slug}
-        position="hero"
-        label="Product decision"
-      />
-      <ReviewDecisionSummary decision={review.data.decision} testedByUs={product.evidence.testedByUs} />
       <section class="article-column prose-affiliate">
         <Content />
       </section>

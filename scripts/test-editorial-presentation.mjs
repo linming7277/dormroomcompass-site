@@ -7,16 +7,16 @@ import { fileURLToPath } from "node:url";
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (relativePath) => fs.readFileSync(path.join(siteRoot, relativePath), "utf8");
 
-test("review presentation uses V2 decision modules before its merchant CTA", () => {
+test("review presentation uses one above-the-fold decision module without repeating it below the disclosure", () => {
   const route = read("src/pages/reviews/[slug].astro");
-  const decision = read("src/components/ReviewDecisionSummary.astro");
-  assert.match(route, /ReviewDecisionSummary/);
-  assert.match(route, /ProductDecisionCard/);
-  assert.ok(route.indexOf("ReviewDecisionSummary") < route.lastIndexOf("MerchantCTA"));
+  assert.match(route, /review-hero-decision/);
+  assert.match(route, /review\.data\.decision\.headline/);
+  assert.match(route, /review\.data\.decision\.bestFit/);
+  assert.match(route, /review\.data\.decision\.skipIf/);
+  assert.ok(route.indexOf("review-hero-decision") < route.indexOf("<Content \/>"));
+  assert.doesNotMatch(route, /ReviewDecisionSummary/);
+  assert.doesNotMatch(route, /ProductDecisionCard/);
   assert.doesNotMatch(route, /Source-checked merchant record/);
-  assert.match(route, /decision=\{review\.data\.decision\}/);
-  assert.match(decision, /decision\.headline/);
-  assert.doesNotMatch(decision, /product\.bestFor|product\.skipIf/);
 });
 
 test("public components do not render internal evidence labels or a default shortlist label", () => {

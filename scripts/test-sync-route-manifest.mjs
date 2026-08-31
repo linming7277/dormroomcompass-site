@@ -22,6 +22,7 @@ test("route manifest derives commercial routes from the authoritative page plan"
   ]);
   assert.deepEqual(manifest.all_routes, [
     "/",
+    "/ai-transparency/",
     "/guides/example/",
     "/reviews/",
     "/reviews/example/",

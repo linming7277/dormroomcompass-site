@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const contractPath = path.join(root, "affiliate-site.json");
 const manifestPath = path.join(root, "generated-routes.json");
+const requiredFixedRoutes = ["/ai-transparency/"];
 
 export function deriveRouteManifest(contract, previousManifest) {
   if (contract.template_version === "v2") {
@@ -33,7 +34,7 @@ export function deriveRouteManifest(contract, previousManifest) {
       ...slugsFromData("categories.ts").map((slug) => `/categories/${slug}/`),
       ...slugsFromData("brands.ts").map((slug) => `/brands/${slug}/`),
     ])].sort();
-    const fixedRoutes = [...new Set(previousManifest.fixed_routes || [])].sort();
+    const fixedRoutes = [...new Set([...(previousManifest.fixed_routes || []), ...requiredFixedRoutes])].sort();
     return {
       schema_version: "affiliate-generated-routes-v1",
       commercial_routes: commercialRoutes,
@@ -46,7 +47,7 @@ export function deriveRouteManifest(contract, previousManifest) {
       .map((page) => page.route)
       .filter((route) => typeof route === "string" && route !== "/"),
   )].sort();
-  const fixedRoutes = [...new Set(previousManifest.fixed_routes || [])].sort();
+  const fixedRoutes = [...new Set([...(previousManifest.fixed_routes || []), ...requiredFixedRoutes])].sort();
   return {
     schema_version: "affiliate-generated-routes-v1",
     commercial_routes: commercialRoutes,
