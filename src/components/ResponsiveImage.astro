@@ -13,4 +13,4 @@ interface Props {
 const { src, alt, width = 640, height = 640, loading = "lazy", class: className, aspectClass = "aspect-square", requireImage = false } = Astro.props;
 ---
 
-{src ? <img src={src} alt={alt} width={width} height={height} loading={loading} decoding="async" class:list={[aspectClass, "w-full object-cover", className]} /> : requireImage ? <div class:list={[aspectClass, "w-full border border-line bg-surface", className]} role="img" aria-label={`${alt} image unavailable`} /> : null}
+{src ? <img src={src} alt={alt} width={width} height={height} loading={loading} decoding="async" class:list={[aspectClass, "w-full bg-white object-contain p-3", className]} /> : requireImage ? <div class:list={[aspectClass, "w-full border border-line bg-surface", className]} role="img" aria-label={`${alt} image unavailable`} /> : null}

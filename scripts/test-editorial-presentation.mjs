@@ -19,6 +19,24 @@ test("review presentation uses one above-the-fold decision module without repeat
   assert.doesNotMatch(route, /Source-checked merchant record/);
 });
 
+test("catalog product media preserves the complete image instead of cropping it", () => {
+  const sources = [
+    read("src/components/CategoryBand.astro"),
+    read("src/components/FeatureStory.astro"),
+    read("src/components/ResponsiveImage.astro"),
+    read("src/pages/guides/[slug].astro"),
+    read("src/pages/reviews/[slug].astro"),
+  ];
+  for (const source of sources) {
+    assert.doesNotMatch(source, /object-cover/);
+    assert.match(source, /object-contain/);
+  }
+  const homepage = read("src/pages/index.astro");
+  const productImages = homepage.match(/<img[^>]+src=\{[^}]+\.image\}[^>]+>/g) ?? [];
+  assert.ok(productImages.length > 0);
+  for (const image of productImages) assert.match(image, /object-contain/);
+});
+
 test("public components do not render internal evidence labels or a default shortlist label", () => {
   const source = [
     read("src/components/EvidenceNotes.astro"),
